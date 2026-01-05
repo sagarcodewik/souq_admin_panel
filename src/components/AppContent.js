@@ -6,6 +6,7 @@ import { CContainer, CSpinner } from '@coreui/react'
 import routes from '../routes'
 
 //
+
 const AppContent = () => {
   return (
     <CContainer className="px-4" lg>
