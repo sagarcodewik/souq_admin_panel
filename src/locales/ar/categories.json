@@ -1,0 +1,29 @@
+{
+  "title": "التصنيفات",
+  "add": "إضافة تصنيف",
+  "edit": "تعديل التصنيف",
+  "create": "إنشاء",
+  "update": "تحديث",
+  "cancel": "إلغاء",
+  "delete": "حذف",
+  "confirm_delete": "هل أنت متأكد من حذف هذا التصنيف؟",
+
+  "search_placeholder": "ابحث عن تصنيف...",
+
+  "table": {
+    "category": "التصنيف",
+    "subcategories": "التصنيفات الفرعية",
+    "color": "اللون",
+    "commission": "العمولة (%)",
+    "actions": "الإجراءات",
+    "yes": "نعم",
+    "no": "لا"
+  },
+
+  "form": {
+    "category": "التصنيف",
+    "subcategories": "التصنيفات الفرعية (مفصولة بفواصل)",
+    "color": "اللون",
+    "commission": "العمولة (%)"
+  }
+}

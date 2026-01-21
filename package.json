@@ -25,7 +25,7 @@
     "formik": "^2.4.6",
     "i18next": "^22.5.1",
     "i18next-browser-languagedetector": "^8.2.0",
-    "jspdf": "^3.0.3",
+    "jspdf": "^4.0.0",
     "jspdf-autotable": "^5.0.2",
     "jwt-decode": "^4.0.0",
     "lottie-react": "^2.4.1",
@@ -38,7 +38,7 @@
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^11.0.5",
     "recharts": "^3.1.2",
     "redux": "^5.0.1",
@@ -49,14 +49,14 @@
     "yup": "^1.6.1"
   },
   "scripts": {
-    "start": "env-cmd -f .env.local react-scripts start",
-    "build:local": "env-cmd -f .env.local react-scripts build",
-    "staging": "env-cmd -f .env.staging react-scripts start",
-    "build": "env-cmd -f .env.staging react-scripts build",
-    "start:prod": "env-cmd -f .env.production react-scripts start",
-    "build:prod": "env-cmd -f .env.production react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npx react-scripts start",
+    "build:local": "npx react-scripts build",
+    "staging": "npx env-cmd -f .env.staging npx react-scripts start",
+    "build": "npx env-cmd -f .env.staging npx react-scripts build",
+    "start:prod": "npx env-cmd -f .env.production npx react-scripts start",
+    "build:prod": "npx env-cmd -f .env.production npx react-scripts build",
+    "test": "npx react-scripts test",
+    "eject": "npx react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

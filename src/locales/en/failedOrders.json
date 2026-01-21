@@ -1,0 +1,13 @@
+{
+  "title": "Failed Orders",
+
+  "search_placeholder": "Search by order number, customer/vendor e-mail, or product name",
+
+  "filter": {
+    "all": "All",
+    "quick": "15 min",
+    "marketplace": "Marketplace"
+  },
+
+  "empty": "No orders found."
+}

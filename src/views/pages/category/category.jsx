@@ -23,9 +23,12 @@ import {
 } from '../../../redux/slice/category'
 import DataTable from '../../../components/datatable/datatable'
 import { useDebounce } from 'use-debounce'
+import { useTranslation } from 'react-i18next'
 
 const Category = () => {
   const dispatch = useDispatch()
+  const { t } = useTranslation('categories')
+
   const { categories, status, totalRecords, currentPage, pageSize } = useSelector(
     (state) => state.categories,
   )

@@ -1,0 +1,15 @@
+{
+  "title": "Approved Vendors",
+
+  "search_placeholder": "Search vendor...",
+
+  "table": {
+    "email": "Email",
+    "business_name": "Business Name",
+    "name": "Name",
+    "phone": "Phone",
+    "registered_on": "Registered On"
+  },
+
+  "empty": "No vendors found."
+}

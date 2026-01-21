@@ -1,0 +1,31 @@
+
+
+{
+  "title": "Approved Vendors",
+  "search_placeholder": "Search by email, business name, and name...",
+  "table": {
+    "email": "Email",
+    "business_name": "Business Name",
+    "name": "Name",
+    "phone": "Phone",
+    "status": "Status",
+    "deactivated": "De-Activated",
+    "actions": "Actions"
+  },
+  "modal": {
+    "title": "Vendor Details",
+    "business_name": "Business Name",
+    "owner_name": "Owner Name",
+    "email": "Email",
+    "category": "Category",
+    "business_phone": "Business Phone",
+    "whatsapp": "Whatsapp Number",
+    "license": "License Document",
+    "bank_info": "Bank / Mobile Pay Info",
+    "status": "Status",
+    "address": "Address",
+    "view_document": "View Document",
+    "close": "Close",
+    "na": "N/A"
+  }
+}

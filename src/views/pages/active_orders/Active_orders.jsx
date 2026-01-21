@@ -9,9 +9,11 @@ import CIcon from '@coreui/icons-react'
 import { cilChevronLeft, cilChevronRight } from '@coreui/icons'
 import { useDebounce } from 'use-debounce'
 import { cilSearch } from '@coreui/icons'
+import { useTranslation } from 'react-i18next'
 
 const ActiveOrders = () => {
   const dispatch = useDispatch()
+  const { t, i18n } = useTranslation('activeOrders')
 
   /* ───────────── local UI state ───────────── */
   const [searchQuery, setSearchQuery] = useState('')
@@ -55,7 +57,7 @@ const ActiveOrders = () => {
 
   return (
     <div className="p-3">
-      <h4 className="mb-3">Active Orders</h4>
+      <h4 className="mb-3">{t('title')}</h4>
 
       {/* Filters */}
       <div className="d-flex flex-wrap gap-3 mb-3">
@@ -66,7 +68,7 @@ const ActiveOrders = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by order number, customer/vendor e-mail, or product name"
+            placeholder={t('search_placeholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -77,9 +79,9 @@ const ActiveOrders = () => {
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
         >
-          <option value="">All</option>
-          <option value="1">15 min</option>
-          <option value="2">Market Place</option>
+          <option value="">{t('filter.all')}</option>
+          <option value="1">{t('filter.quick')}</option>
+          <option value="2">{t('filter.marketplace')}</option>
         </select>
       </div>
 
@@ -90,7 +92,7 @@ const ActiveOrders = () => {
           <div className="mt-4">
             {orders.length === 0 ? (
               <div className="text-center">
-                <p className="text-muted">No orders found.</p>
+                <p className="text-muted">{t('empty')}</p>
               </div>
             ) : (
               <div className={styles.orderList}>

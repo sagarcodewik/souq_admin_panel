@@ -8,8 +8,10 @@ import Loader from '../../../components/loader/Loader'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import { useDebounce } from 'use-debounce'
+import { useTranslation } from 'react-i18next'
 
 const Store = () => {
+  const { t, i18n } = useTranslation('stores')
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { vendors, status, totalRecords } = useSelector((state) => state.store)
@@ -53,7 +55,7 @@ const Store = () => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-        <h4 className="mb-0">Approved Vendors</h4>
+        <h4 className="mb-0">{t('title')}</h4>
         <div className="input-group" style={{ width: '300px' }}>
           <span className="input-group-text bg-white">
             <CIcon icon={cilSearch} />
@@ -61,7 +63,7 @@ const Store = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search vendor..."
+            placeholder={t('search_placeholder')}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />

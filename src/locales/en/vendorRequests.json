@@ -1,0 +1,43 @@
+{
+  "title": "Pending Vendor Requests",
+
+  "search": {
+    "business_name": "Search By Business Name",
+    "owner_name": "Search By Owner Name",
+    "email": "Search By Email"
+  },
+
+  "empty": "No pending vendors found.",
+
+  "table": {
+    "serial": "S.No.",
+    "business_name": "Business Name",
+    "owner_name": "Owner Name",
+    "email": "Email",
+    "status": "Status",
+    "actions": "Actions"
+  },
+
+  "actions": {
+    "approve": "Approve",
+    "reject": "Reject",
+    "view": "View"
+  },
+
+  "modal": {
+    "title": "Vendor Details",
+    "business_name": "Business Name",
+    "owner_name": "Owner Name",
+    "email": "Email",
+    "category": "Category",
+    "business_phone": "Business Phone",
+    "whatsapp": "Whatsapp Number",
+    "license": "License Document",
+    "bank_info": "Bank / Mobile Pay Info",
+    "status": "Status",
+    "address": "Address",
+    "view_document": "View Document",
+    "close": "Close",
+    "na": "N/A"
+  }
+}

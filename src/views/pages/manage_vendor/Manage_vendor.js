@@ -17,8 +17,10 @@ import {
 import { useDebounce } from 'use-debounce'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
+import { useTranslation } from 'react-i18next'
 
 const ManageVendor = () => {
+  const { t } = useTranslation('vendors')
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { vendors, status, totalRecords } = useSelector((state) => state.vendorApproval)
@@ -108,14 +110,14 @@ const ManageVendor = () => {
       ) : (
         <div className="card-body">
           <div className="d-flex justify-content-between align-items-center mb-3">
-            <h4 className="mb-3">Approved Vendors</h4>
+            <h4 className="mb-3">{t('title')}</h4>
             <div className="input-group" style={{ maxWidth: '400px' }}>
               <span className="input-group-text bg-white border-end-0">
                 <CIcon icon={cilSearch} />
               </span>
               <CFormInput
                 type="text"
-                placeholder="Search by email, business name, and name..."
+                placeholder={t('search_placeholder')}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 autoFocus
@@ -138,31 +140,31 @@ const ManageVendor = () => {
       )}
       <CModal visible={visible} onClose={() => setVisible(false)} size="lg">
         <CModalHeader onClose={() => setVisible(false)}>
-          <CModalTitle>Vendor Details</CModalTitle>
+          <CModalTitle>{t('modal.title')}</CModalTitle>
         </CModalHeader>
         <CModalBody>
           {selectedVendor && (
             <div>
               <p>
-                <strong>Business Name:</strong> {selectedVendor.businessName}
+                <strong>{t('modal.business_name')}:</strong> {selectedVendor.businessName}
               </p>
               <p>
-                <strong>Owner Name:</strong> {selectedVendor.ownerName}
+                <strong>{t('modal.owner_name')}:</strong> {selectedVendor.ownerName}
               </p>
               <p>
-                <strong>Email:</strong> {selectedVendor.user?.email}
+                <strong>{t('modal.email')}:</strong> {selectedVendor.user?.email}
               </p>
               <p>
-                <strong>Category:</strong> {selectedVendor.category}
+                <strong>{t('modal.category')}:</strong> {selectedVendor.category}
               </p>
               <p>
-                <strong>BusinessPhone:</strong> {selectedVendor.businessPhone || 'N/A'}
+                <strong>{t('modal.business_phone')}:</strong> {selectedVendor.businessPhone || 'N/A'}
               </p>
               <p>
-                <strong>Whatsapp Number:</strong> {selectedVendor.whatsappNumber || 'N/A'}
+                <strong>{t('modal.whatsapp')}:</strong> {selectedVendor.whatsappNumber || 'N/A'}
               </p>
               <p>
-                <strong>License Document:</strong>{' '}
+                <strong>{t('license')}:</strong>{' '}
                 {selectedVendor.licenseDocument ? (
                   <a
                     href={selectedVendor.licenseDocument}
@@ -170,20 +172,20 @@ const ManageVendor = () => {
                     rel="noopener noreferrer"
                     style={{ color: 'blue', textDecoration: 'underline' }}
                   >
-                    View Document
+                      {t('modal.view_document')}
                   </a>
                 ) : (
                   'N/A'
                 )}
               </p>
               <p>
-                <strong>bankOrMobilePayInfo:</strong> {selectedVendor.bankOrMobilePayInfo || 'N/A'}
+                <strong>{t('modal.bank_info')}:</strong> {selectedVendor.bankOrMobilePayInfo || 'N/A'}
               </p>
               <p>
-                <strong>Status:</strong> {selectedVendor.status}
+                <strong>{t('modal.status')}:</strong> {selectedVendor.status}
               </p>
               <p>
-                <strong>Address:</strong>{' '}
+                <strong>{t('modal.address')}:</strong>{' '}
                 {selectedVendor.address
                   ? `${selectedVendor.address.street}, ${selectedVendor.address.city}, ${selectedVendor.address.state}, ${selectedVendor.address.country}`
                   : 'N/A'}
@@ -193,7 +195,7 @@ const ManageVendor = () => {
         </CModalBody>
         <CModalFooter>
           <CButton color="secondary" onClick={() => setVisible(false)}>
-            Close
+           {t('modal.close')}
           </CButton>
         </CModalFooter>
       </CModal>

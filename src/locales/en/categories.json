@@ -1,0 +1,29 @@
+{
+  "title": "Categories",
+  "add": "Add Category",
+  "edit": "Edit Category",
+  "create": "Create",
+  "update": "Update",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "confirm_delete": "Are you sure you want to delete this category?",
+
+  "search_placeholder": "Search category...",
+
+  "table": {
+    "category": "Category",
+    "subcategories": "Subcategories",
+    "color": "Color",
+    "commission": "Commission (%)",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No"
+  },
+
+  "form": {
+    "category": "Category",
+    "subcategories": "Subcategories (comma separated)",
+    "color": "Color",
+    "commission": "Commission (%)"
+  }
+}

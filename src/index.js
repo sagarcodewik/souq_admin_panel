@@ -5,6 +5,7 @@ import 'core-js'
 import App from './App'
 import { store } from './redux/store'
 import { ToastContainer } from 'react-toastify'
+import './utils/i18n'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>

@@ -22,8 +22,10 @@ import { FaEye } from 'react-icons/fa'
 import Loader from './../../../components/loader/Loader'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
+import { useTranslation } from 'react-i18next'
 
 const Vendor_request = () => {
+  const { t, i18n } = useTranslation('vendorRequests')
   const dispatch = useDispatch()
   const { pendingVendors, totalPages, status, error } = useSelector((state) => state.vendorApproval)
 
@@ -68,8 +70,11 @@ const Vendor_request = () => {
   }
 
   return (
-    <div className="p-3">
-      <h4 className="mb-4 text-center">Pending Vendor Requests</h4>
+ <div
+  className="p-3"
+  dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+>
+      <h4 className="mb-4 text-center">{t('title')}</h4>
       <div className="d-flex gap-3 mb-3">
 
         <div className="input-group" style={{ maxWidth: '320px' }}>
@@ -77,7 +82,7 @@ const Vendor_request = () => {
             <CIcon icon={cilSearch} />
           </span>
           <CFormInput
-            placeholder="Search By Business Name"
+            placeholder={t('search.business_name')}
             value={searchQuery.businessName}
             onChange={(e) => {
               setPage(1)
@@ -91,7 +96,7 @@ const Vendor_request = () => {
             <CIcon icon={cilSearch} />
           </span>
           <CFormInput
-            placeholder="Search By Owner Name"
+            placeholder={t('search.owner_name')}
             value={searchQuery.ownerName}
             onChange={(e) => {
               setPage(1)
@@ -105,7 +110,7 @@ const Vendor_request = () => {
             <CIcon icon={cilSearch} />
           </span>
           <CFormInput
-            placeholder="Search By Email"
+            placeholder={t('search.email')}
             value={searchQuery.email}
             onChange={(e) => {
               setPage(1)
@@ -122,7 +127,7 @@ const Vendor_request = () => {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {pendingVendors.length === 0 && status === 'succeeded' && (
-        <p className="text-center">No pending vendors found.</p>
+        <p className="text-center">{t('empty')}</p>
       )}
 
       {pendingVendors.length > 0 && (
@@ -130,12 +135,12 @@ const Vendor_request = () => {
           <CTable striped bordered hover responsive>
             <CTableHead color="dark">
               <CTableRow>
-                <CTableHeaderCell>S.No.</CTableHeaderCell>
-                <CTableHeaderCell>Business Name</CTableHeaderCell>
-                <CTableHeaderCell>Owner Name</CTableHeaderCell>
-                <CTableHeaderCell>Email</CTableHeaderCell>
-                <CTableHeaderCell>Status</CTableHeaderCell>
-                <CTableHeaderCell>Actions</CTableHeaderCell>
+              <CTableHeaderCell>{t('table.serial')}</CTableHeaderCell>
+              <CTableHeaderCell>{t('table.business_name')}</CTableHeaderCell>
+              <CTableHeaderCell>{t('table.owner_name')}</CTableHeaderCell>
+              <CTableHeaderCell>{t('table.email')}</CTableHeaderCell>
+              <CTableHeaderCell>{t('table.status')}</CTableHeaderCell>
+              <CTableHeaderCell>{t('table.actions')}</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
             <CTableBody>
@@ -153,14 +158,14 @@ const Vendor_request = () => {
                         size="sm"
                         onClick={() => handleStatusUpdate(vendor._id, 'Approved')}
                       >
-                        Approve
+                       {t('actions.approve')}
                       </CButton>
                       <CButton
                         color="danger"
                         size="sm"
                         onClick={() => handleStatusUpdate(vendor._id, 'Rejected')}
                       >
-                        Reject
+                       {t('actions.reject')}
                       </CButton>
                       <CButton color="info" size="sm" onClick={() => openVendorDetails(vendor)}>
                         <FaEye />
@@ -190,31 +195,31 @@ const Vendor_request = () => {
       {/* Vendor Details Modal */}
       <CModal visible={visible} onClose={() => setVisible(false)} size="lg">
         <CModalHeader onClose={() => setVisible(false)}>
-          <CModalTitle>Vendor Details</CModalTitle>
+          <CModalTitle>{t('modal.title')}</CModalTitle>
         </CModalHeader>
         <CModalBody>
           {selectedVendor && (
             <div>
-              <p><strong>Business Name:</strong> {selectedVendor.businessName}</p>
-              <p><strong>Owner Name:</strong> {selectedVendor.ownerName}</p>
-              <p><strong>Email:</strong> {selectedVendor.userId?.email}</p>
-              <p><strong>Category:</strong> {selectedVendor.category}</p>
-              <p><strong>BusinessPhone:</strong> {selectedVendor.businessPhone || 'N/A'}</p>
-              <p><strong>Whatsapp Number:</strong> {selectedVendor.whatsappNumber || 'N/A'}</p>
+              <p><strong>{t('modal.business_name')}:</strong> {selectedVendor.businessName}</p>
+              <p><strong>{t('modal.owner_name')}:</strong> {selectedVendor.ownerName}</p>
+              <p><strong>{t('modal.email')}:</strong> {selectedVendor.userId?.email}</p>
+              <p><strong>{t('modal.category')}:</strong> {selectedVendor.category}</p>
+              <p><strong>{t('business_phone')}:</strong> {selectedVendor.businessPhone ||  t('modal.na')}</p>
+              <p><strong>{t('modal.whatsapp')}:</strong> {selectedVendor.whatsappNumber ||  t('modal.na')}</p>
               <p>
-                <strong>License Document:</strong>{' '}
+                <strong>{('license')}:</strong>{' '}
                 {selectedVendor.licenseDocument ? (
                   <a href={selectedVendor.licenseDocument} target="_blank" rel="noopener noreferrer">
-                    View Document
+                   {t('modal.view_document')}
                   </a>
                 ) : (
-                  'N/A'
+                 t('modal.na')
                 )}
               </p>
-              <p><strong>bankOrMobilePayInfo:</strong> {selectedVendor.bankOrMobilePayInfo || 'N/A'}</p>
-              <p><strong>Status:</strong> {selectedVendor.status}</p>
+              <p><strong>{t('modal.bank_info')}:</strong> {selectedVendor.bankOrMobilePayInfo ||t('modal.na')}</p>
+              <p><strong>{t('modal.status')}:</strong> {selectedVendor.status}</p>
               <p>
-                <strong>Address:</strong>{' '}
+                <strong>{t('modal.address')}:</strong>{' '}
                 {selectedVendor.address
                   ? `${selectedVendor.address.street}, ${selectedVendor.address.city}, ${selectedVendor.address.state}, ${selectedVendor.address.country}`
                   : 'N/A'}
@@ -223,7 +228,7 @@ const Vendor_request = () => {
           )}
         </CModalBody>
         <CModalFooter>
-          <CButton color="secondary" onClick={() => setVisible(false)}>Close</CButton>
+          <CButton color="secondary" onClick={() => setVisible(false)}>{t('modal.close')}</CButton>
         </CModalFooter>
       </CModal>
     </div>
