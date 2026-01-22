@@ -75,10 +75,10 @@ export const ActiveOrdersheaders = (handleViewOrder) => [
 
 // utils/header.js
 
-export const VendorHeaders = (navigate, dispatch) => [
+export const VendorHeaders = (navigate, dispatch,t) => [
   {
     key: 'userId',
-    label: 'Email',
+     label: t('table.email'),
     render: (row) => {
       const email = fallback(row.userId?.email)
       const id = row.userId?._id
@@ -105,22 +105,22 @@ export const VendorHeaders = (navigate, dispatch) => [
   },
   {
     key: 'businessName',
-    label: 'Business Name',
+   label: t('table.business_name'),
     render: (row) => fallback(row.businessName),
   },
   {
     key: 'ownerName',
-    label: 'Name',
+   label: t('table.name'),
     render: (row) => fallback(row.ownerName),
   },
   {
     key: 'businessPhone',
-    label: 'Phone',
+    label: t('table.phone'),
     render: (row) => fallback(row.businessPhone),
   },
   {
     key: 'createdAt',
-    label: 'Registered On',
+   label: t('table.registered_on'),
     format: 'date',
   },
 ]
@@ -173,83 +173,39 @@ export const AllVendorHeaders = (
   setVisible,
   onToggleDelete,
   onToggleStatus,
+  t
 ) => [
   {
     key: 'userId',
-    label: 'Email',
+    label: t('table.email'),
     render: (row) => fallback(row.user?.email),
   },
   {
     key: 'businessName',
-    label: 'Business Name',
+     label: t('table.business_name'),
     render: (row) => fallback(row.businessName),
   },
   {
     key: 'ownerName',
-    label: 'Name',
+    label: t('table.name'),
     render: (row) => fallback(row.ownerName),
   },
   {
     key: 'businessPhone',
-    label: 'Phone',
+    label: t('table.phone'),
     render: (row) => fallback(row.businessPhone),
   },
   {
     key: 'status',
-    label: 'Status',
+    label: t('table.status'),
     render: (row) => fallback(row.status),
   },
   {
     key: 'deleted',
-    label: 'De-Activated',
+    label: t('table.deactivated'),
     render: (row) => (row.user?.deleted ? 'Yes' : 'No'),
   },
-  // {
-  //   key: 'actions',
-  //   label: 'Actions',
-  //   render: (row) => (
-  //     <div className="d-flex gap-2">
-  //       <CTooltip content="View Vendor Details" placement="top">
-  //         <CButton
-  //           color="info"
-  //           size="sm"
-  //           onClick={() => {
-  //             setSelectedVendor(row)
-  //             setVisible(true)
-  //           }}
-  //         >
-  //           <FaEye />
-  //         </CButton>
-  //       </CTooltip>
 
-  //       <CTooltip
-  //         content={row.user?.deleted ? 'Activate Vendor' : 'Deactivate Vendor'}
-  //         placement="top"
-  //       >
-  //         <CButton
-  //           color={row.user?.deleted ? 'success' : 'danger'}
-  //           size="sm"
-  //           onClick={() => onToggleDelete(row)}
-  //         >
-  //           <FaUserSlash />
-  //         </CButton>
-  //       </CTooltip>
-
-  //       <CTooltip
-  //         content={row.status === 'Approved' ? 'Reject Vendor' : 'Approve Vendor'}
-  //         placement="top"
-  //       >
-  //         <CButton
-  //           color={row.status === 'Approved' ? 'warning' : 'success'}
-  //           size="sm"
-  //           onClick={() => onToggleStatus(row)}
-  //         >
-  //           {row.status === 'Approved' ? <FaTimesCircle /> : <FaCheckCircle />}
-  //         </CButton>
-  //       </CTooltip>
-  //     </div>
-  //   ),
-  // },
   {
     key: 'actions',
     label: 'Actions',
@@ -298,6 +254,83 @@ export const AllVendorHeaders = (
   },
 ]
 
+// export const AllDriverHeaders = (
+//   navigate,
+//   dispatch,
+//   setSelectedVendor,
+//   setVisible,
+//   onToggleDelete,
+//   onToggleStatus,
+//     t,
+// ) => [
+//   {
+//     key: 'userId',
+//     label: 'Email',
+//     render: (row) => fallback(row.user?.email),
+//   },
+//   {
+//     key: 'FullName',
+//     label: 'Name',
+//     render: (row) => fallback(row.FullName),
+//   },
+//   {
+//     key: 'status',
+//     label: 'Status',
+//     render: (row) => fallback(row.status),
+//   },
+//   {
+//     key: 'deleted',
+//     label: 'Deleted',
+//     render: (row) => (row.user?.deleted ? 'Yes' : 'No'),
+//   },
+//   {
+//     key: 'actions',
+//     label: 'Actions',
+//     render: (row) => (
+//       <div className="d-flex gap-2">
+//         <CTooltip content="View Driver Details" placement="top">
+//           <CButton
+//             color="info"
+//             size="sm"
+//             onClick={() => {
+//               setSelectedVendor(row)
+//               setVisible(true)
+//             }}
+//           >
+//             <FaEye />
+//           </CButton>
+//         </CTooltip>
+
+//         <CTooltip
+//           content={row.user?.deleted ? 'Activate Driver' : 'Deactivate Driver'}
+//           placement="top"
+//         >
+//           <CButton
+//             color={row.user?.deleted ? 'success' : 'danger'}
+//             size="sm"
+//             onClick={() => onToggleDelete(row)}
+//           >
+//             <FaUserSlash />
+//           </CButton>
+//         </CTooltip>
+
+//         <CTooltip
+//           content={row.status === 'Approved' ? 'Reject Driver' : 'Approve Driver'}
+//           placement="top"
+//         >
+//           <CButton
+//             color={row.status === 'Approved' ? 'warning' : 'success'}
+//             size="sm"
+//             onClick={() => onToggleStatus(row)}
+//           >
+//             {row.status === 'Approved' ? <FaTimesCircle /> : <FaCheckCircle />}
+//           </CButton>
+//         </CTooltip>
+//       </div>
+//     ),
+//   },
+// ]
+
 export const AllDriverHeaders = (
   navigate,
   dispatch,
@@ -305,33 +338,37 @@ export const AllDriverHeaders = (
   setVisible,
   onToggleDelete,
   onToggleStatus,
+  t,
 ) => [
   {
     key: 'userId',
-    label: 'Email',
+    label: t('table.email'),
     render: (row) => fallback(row.user?.email),
   },
   {
     key: 'FullName',
-    label: 'Name',
+    label: t('table.name'),
     render: (row) => fallback(row.FullName),
   },
   {
     key: 'status',
-    label: 'Status',
+    label: t('table.status'),
     render: (row) => fallback(row.status),
   },
   {
     key: 'deleted',
-    label: 'Deleted',
-    render: (row) => (row.user?.deleted ? 'Yes' : 'No'),
+    label: t('table.deleted'),
+    render: (row) =>
+      row.user?.deleted
+        ? t('yes', { ns: 'common' })
+        : t('no', { ns: 'common' }),
   },
   {
     key: 'actions',
-    label: 'Actions',
+    label: t('table.actions'),
     render: (row) => (
       <div className="d-flex gap-2">
-        <CTooltip content="View Driver Details" placement="top">
+        <CTooltip content={t('actions.view_driver')} placement="top">
           <CButton
             color="info"
             size="sm"
@@ -345,7 +382,11 @@ export const AllDriverHeaders = (
         </CTooltip>
 
         <CTooltip
-          content={row.user?.deleted ? 'Activate Driver' : 'Deactivate Driver'}
+          content={
+            row.user?.deleted
+              ? t('actions.activate_driver')
+              : t('actions.deactivate_driver')
+          }
           placement="top"
         >
           <CButton
@@ -358,7 +399,11 @@ export const AllDriverHeaders = (
         </CTooltip>
 
         <CTooltip
-          content={row.status === 'Approved' ? 'Reject Driver' : 'Approve Driver'}
+          content={
+            row.status === 'Approved'
+              ? t('actions.reject_driver')
+              : t('actions.approve_driver')
+          }
           placement="top"
         >
           <CButton
@@ -366,7 +411,9 @@ export const AllDriverHeaders = (
             size="sm"
             onClick={() => onToggleStatus(row)}
           >
-            {row.status === 'Approved' ? <FaTimesCircle /> : <FaCheckCircle />}
+            {row.status === 'Approved'
+              ? <FaTimesCircle />
+              : <FaCheckCircle />}
           </CButton>
         </CTooltip>
       </div>
@@ -374,101 +421,221 @@ export const AllDriverHeaders = (
   },
 ]
 
-export const PromotionHeaders = (handleView, handleStatusChange) => [
+
+// export const PromotionHeaders = (handleView, handleStatusChange,t) => [
+//   {
+//     key: 'title',
+//     label: 'Title',
+//     sortable: true,
+//     render: (row) => fallback(row.title),
+//   },
+//   {
+//     key: 'description',
+//     label: 'Description',
+//     sortable: true,
+//     render: (row) => fallback(row.description),
+//   },
+//   {
+//     key: 'type',
+//     label: 'Type',
+//     sortable: true,
+//     render: (row) => fallback(row.type?.toUpperCase()),
+//   },
+//   {
+//     key: 'promotionCode',
+//     label: 'Promotion Code',
+//     sortable: true,
+//     render: (row) => fallback(row.promotionCode),
+//   },
+//   {
+//     key: 'isDeleted',
+//     label: 'Deleted',
+//     sortable: true,
+//     render: (row) => (row.isDeleted ? 'Yes' : 'No'),
+//   },
+//   {
+//     key: 'isActive',
+//     label: 'Active',
+//     sortable: true,
+//     render: (row) => (row.isActive ? 'Yes' : 'No'),
+//   },
+//   {
+//     key: 'startDate',
+//     label: 'Start Date',
+//     sortable: true,
+//     format: 'date',
+//   },
+//   {
+//     key: 'endDate',
+//     label: 'End Date',
+//     sortable: true,
+//     format: 'date',
+//   },
+//   {
+//     key: 'createdAt',
+//     label: 'Created',
+//     sortable: true,
+//     format: 'date',
+//   },
+//   {
+//     key: 'actions',
+//     label: 'Actions',
+//     render: (row) => (
+//       <>
+//         <CTooltip content="View Details">
+//           <CButton
+//             onClick={() => handleView(row)}
+//             size="sm"
+//             variant="outline"
+//             color="info"
+//             className="me-2"
+//           >
+//             <FaEye />
+//           </CButton>
+//         </CTooltip>
+
+//         <CTooltip content={row.isDeleted ? 'Restore Promotion' : 'Delete Promotion'}>
+//           <CButton
+//             onClick={() => handleStatusChange({ id: row._id, isDeleted: !row.isDeleted })}
+//             size="sm"
+//             variant="outline"
+//             color={row.isDeleted ? 'success' : 'danger'}
+//             className="me-2"
+//           >
+//             {row.isDeleted ? <FaTrashRestore /> : <FaTrash />}
+//           </CButton>
+//         </CTooltip>
+
+//         <CTooltip content={row.isActive ? 'Deactivate Promotion' : 'Activate Promotion'}>
+//           <CButton
+//             onClick={() => handleStatusChange({ id: row._id, isActive: !row.isActive })}
+//             size="sm"
+//             variant="outline"
+//             color="secondary"
+//           >
+//             {row.isActive ? <FaToggleOn /> : <FaToggleOff />}
+//           </CButton>
+//         </CTooltip>
+//       </>
+//     ),
+//   },
+// ]
+
+export const PromotionHeaders = (handleView, handleStatusChange,t) => [
   {
     key: 'title',
-    label: 'Title',
+    label: t('table.title'),
     sortable: true,
     render: (row) => fallback(row.title),
   },
   {
     key: 'description',
-    label: 'Description',
+    label: t('table.description'),
     sortable: true,
     render: (row) => fallback(row.description),
   },
   {
     key: 'type',
-    label: 'Type',
+    label: t('table.type'),
     sortable: true,
     render: (row) => fallback(row.type?.toUpperCase()),
   },
   {
     key: 'promotionCode',
-    label: 'Promotion Code',
+    label: t('table.promotion_code'),
     sortable: true,
     render: (row) => fallback(row.promotionCode),
   },
   {
     key: 'isDeleted',
-    label: 'Deleted',
+    label: t('table.deleted'),
     sortable: true,
-    render: (row) => (row.isDeleted ? 'Yes' : 'No'),
+    render: (row) => (row.isDeleted ? t('common.yes') : t('common.no')),
   },
   {
     key: 'isActive',
-    label: 'Active',
+    label: t('table.active'),
     sortable: true,
-    render: (row) => (row.isActive ? 'Yes' : 'No'),
+    render: (row) => (row.isActive ? t('common.yes') : t('common.no')),
   },
   {
     key: 'startDate',
-    label: 'Start Date',
+    label: t('table.start_date'),
     sortable: true,
     format: 'date',
   },
   {
     key: 'endDate',
-    label: 'End Date',
+    label: t('table.end_date'),
     sortable: true,
     format: 'date',
   },
   {
     key: 'createdAt',
-    label: 'Created',
+    label: t('table.created'),
     sortable: true,
     format: 'date',
   },
   {
     key: 'actions',
-    label: 'Actions',
+    label: t('table.actions'),
     render: (row) => (
-      <>
-        <CTooltip content="View Details">
+      <div className="d-flex gap-2">
+        <CTooltip content={t('actions.view')}>
           <CButton
-            onClick={() => handleView(row)}
             size="sm"
-            variant="outline"
             color="info"
-            className="me-2"
+            variant="outline"
+            onClick={() => handleView(row)}
           >
             <FaEye />
           </CButton>
         </CTooltip>
 
-        <CTooltip content={row.isDeleted ? 'Restore Promotion' : 'Delete Promotion'}>
+        <CTooltip
+          content={
+            row.isDeleted
+              ? t('actions.restore')
+              : t('actions.delete')
+          }
+        >
           <CButton
-            onClick={() => handleStatusChange({ id: row._id, isDeleted: !row.isDeleted })}
             size="sm"
-            variant="outline"
             color={row.isDeleted ? 'success' : 'danger'}
-            className="me-2"
+            variant="outline"
+            onClick={() =>
+              handleStatusChange({
+                id: row._id,
+                isDeleted: !row.isDeleted,
+              })
+            }
           >
             {row.isDeleted ? <FaTrashRestore /> : <FaTrash />}
           </CButton>
         </CTooltip>
 
-        <CTooltip content={row.isActive ? 'Deactivate Promotion' : 'Activate Promotion'}>
+        <CTooltip
+          content={
+            row.isActive
+              ? t('actions.deactivate')
+              : t('actions.activate')
+          }
+        >
           <CButton
-            onClick={() => handleStatusChange({ id: row._id, isActive: !row.isActive })}
             size="sm"
-            variant="outline"
             color="secondary"
+            variant="outline"
+            onClick={() =>
+              handleStatusChange({
+                id: row._id,
+                isActive: !row.isActive,
+              })
+            }
           >
             {row.isActive ? <FaToggleOn /> : <FaToggleOff />}
           </CButton>
         </CTooltip>
-      </>
+      </div>
     ),
   },
 ]

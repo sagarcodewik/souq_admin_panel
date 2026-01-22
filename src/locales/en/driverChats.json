@@ -1,0 +1,32 @@
+{
+  "messages": {
+    "title": "Messages",
+    "count": "{{count}} conversation",
+    "count_plural": "{{count}} conversations"
+  },
+
+  "roles": {
+    "admin": "Admin",
+    "driver": "Driver",
+    "vendor": "Vendor",
+    "customer": "Customer",
+    "support": "Support",
+    "moderator": "Moderator"
+  },
+
+  "states": {
+    "loading": "Loading conversations...",
+    "errorTitle": "Error loading chats"
+  },
+
+  "empty": {
+    "leftTitle": "No conversations yet",
+    "leftDesc": "Start chatting with drivers",
+    "rightTitle": "Select a conversation",
+    "rightDesc": "Choose a contact from the sidebar to start messaging"
+  },
+
+  "common": {
+    "unknownUser": "Unknown User"
+  }
+}

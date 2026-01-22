@@ -1,0 +1,9 @@
+{
+  "empty": "No messages yet. Start the conversation!",
+  "input": {
+    "placeholder": "Type your message..."
+  },
+  "buttons": {
+    "send": "Send"
+  }
+}

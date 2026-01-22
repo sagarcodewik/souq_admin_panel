@@ -14,152 +14,144 @@ import {
   cilMoney,
   cilTag,
   cilDollar,
-  cilWallet,
-  cilCheckCircle,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem } from '@coreui/react'
 
-const _nav = [
+const  getNav  = (t) => [
   {
     component: CNavItem,
-    name: 'Dashboard',
+    name: t('nav.dashboard'),
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
   {
     component: CNavGroup,
-    name: 'Vendors',
+    name: t('nav.vendors'),
     icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Manage Vendors',
+        name: t('nav.manage_vendors'),
         to: '/vendors/manage',
       },
       {
         component: CNavItem,
-        name: 'Vendor Requests',
+        name: t('nav.vendor_requests'),
         to: '/vendors/requests',
       },
     ],
   },
   {
     component: CNavGroup,
-    name: 'Drivers',
+    name: t('nav.drivers'),
     icon: <CIcon icon={cilTruck} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Manage Drivers',
+        name: t('nav.manage_drivers'),
         to: '/drivers/manage',
       },
       {
         component: CNavItem,
-        name: 'Driver Requests',
+        name: t('nav.driver_requests'),
         to: '/drivers/requests',
       },
     ],
   },
   {
     component: CNavItem,
-    name: 'Active Orders',
+    name: t('nav.active_orders'),
     to: '/orders',
     icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Failed Orders',
+    name: t('nav.failed_orders'),
     to: '/failed-orders',
     icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Stores',
+    name: t('nav.stores'),
     to: '/stores',
     icon: <CIcon icon={cilBuilding} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Category',
+    name: t('nav.category'),
     to: '/category',
     icon: <CIcon icon={cilFolderOpen} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Advertisements',
+    name: t('nav.advertisements'),
     to: '/advertisements',
     icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
   },
-
   {
     component: CNavItem,
-    name: 'Promotions',
+    name: t('nav.promotions'),
     to: '/promotions',
     icon: <CIcon icon={cilTags} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Reviews',
+    name: t('nav.reviews'),
     to: '/reviews',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
   },
   {
     component: CNavGroup,
-    name: 'Chats',
+    name: t('nav.chats'),
     icon: <CIcon icon={cilChatBubble} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Customer Chats',
+        name: t('nav.customer_chats'),
         to: '/customer-chats',
       },
       {
         component: CNavItem,
-        name: 'Driver Chats',
+        name: t('nav.driver_chats'),
         to: '/driver-chats',
       },
-      // {
-      //   component: CNavItem,
-      //   name: 'Order Chats',
-      //   to: '/order-chats',
-      // },
       {
         component: CNavItem,
-        name: 'Vendor Chats',
+        name: t('nav.vendor_chats'),
         to: '/vendor-chats',
       },
     ],
   },
   {
     component: CNavItem,
-    name: 'Driver Commission',
+    name: t('nav.driver_commission'),
     to: '/driver-commission',
     icon: <CIcon icon={cilDollar} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Add On Pricing',
+    name: t('nav.add_on_pricing'),
     to: '/add-on-pricing',
     icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Promotion Pricing',
+    name: t('nav.promotion_pricing'),
     to: '/promotion-pricing',
     icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Finances',
+    name: t('nav.finances'),
     to: '/finances',
     icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Driver Payments',
+    name: t('nav.driver_payments'),
     to: '/driver-payments',
     icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
   },
 ]
 
-export default _nav
+export default getNav 

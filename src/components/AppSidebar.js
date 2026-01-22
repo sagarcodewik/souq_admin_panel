@@ -14,11 +14,16 @@ import { sygnet } from '../assets/brand/sygnet'
 import navigation from '../_nav'
 import { set } from '../redux/slice/uiSlice' // 👈 import the `set` action from uiSlice
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+import getNav from '../_nav' // ✅ CORRECT PATH
+
 const AppSidebar = () => {
+  const { t } = useTranslation('common')
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.ui.sidebarUnfoldable) // 👈 use `state.ui`
   const sidebarShow = useSelector((state) => state.ui.sidebarShow) // 👈 use `state.ui`
-
+  const navigation = getNav(t)
   return (
     <CSidebar
       className="border-end"
@@ -46,7 +51,7 @@ const AppSidebar = () => {
       </CSidebarHeader>
 
       <AppSidebarNav items={navigation} />
-
+    
       <CSidebarFooter className="border-top d-none d-lg-flex">
         <CSidebarToggler
           onClick={() => dispatch(set({ sidebarUnfoldable: !unfoldable }))} // 👈 use `set` action

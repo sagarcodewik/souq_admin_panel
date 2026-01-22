@@ -1,0 +1,32 @@
+{
+  "title": "موافقات مدفوعات السائقين",
+  "search": "ابحث عن السائق أو الطلب...",
+  "buttons": {
+    "exportPdf": "تصدير PDF",
+    "approve": "موافقة"
+  },
+  "pdf": {
+    "title": "سجل مدفوعات السائقين"
+  },
+  "table": {
+    "ledgerId": "رقم السجل",
+    "driverInfo": "بيانات السائق",
+    "driverName": "اسم السائق",
+    "driverId": "رقم السائق",
+    "contact": "رقم الاتصال",
+    "orderId": "رقم الطلب",
+    "amount": "المبلغ",
+    "source": "المصدر",
+    "status": "الحالة",
+    "action": "إجراء",
+    "date": "التاريخ"
+  },
+  "status": {
+    "approved": "موافق عليه",
+    "pending": "قيد الانتظار"
+  },
+  "source": {
+    "paid_to_admin": "مدفوع للإدارة",
+    "paid_to_driver": "مدفوع للسائق"
+  }
+}

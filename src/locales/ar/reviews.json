@@ -1,0 +1,30 @@
+{
+  "title": "المنتجات مع التقييمات",
+
+  "search_placeholder": "ابحث عن منتج...",
+  "sort_label": "ترتيب:",
+
+  "sort": {
+    "latest": "الأحدث",
+    "oldest": "الأقدم",
+    "highrating": "أعلى تقييم",
+    "lowrating": "أقل تقييم"
+  },
+
+  "no_products": "لا توجد منتجات.",
+  "loading_error": "حدث خطأ ما.",
+
+  "rating_text": "التقييم",
+  "reviews_count": "{{count}} مراجعات",
+
+  "tabs": {
+    "product": "مراجعات المنتج",
+    "driver": "مراجعات السائق"
+  },
+
+  "no_product_reviews": "لا توجد مراجعات للمنتج.",
+  "no_driver_reviews": "لا توجد مراجعات للسائق.",
+
+  "driver_label": "سائق",
+  "vendor_reply": "رد البائع"
+}

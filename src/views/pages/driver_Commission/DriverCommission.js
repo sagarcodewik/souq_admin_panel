@@ -19,6 +19,7 @@ import {
 import DataTable from '../../../components/datatable/datatable'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { useTranslation } from 'react-i18next'
 
 // ✅ Yup schema
 const commissionSchema = Yup.object().shape({
@@ -30,6 +31,7 @@ const commissionSchema = Yup.object().shape({
 })
 
 const DriverCommission = () => {
+  const { t } = useTranslation('driverCommission')
   const dispatch = useDispatch()
   const { commissions, status } = useSelector((state) => state.driverCommission)
 
@@ -59,30 +61,63 @@ const DriverCommission = () => {
     }
   }
 
+  // const headers = [
+  //   {
+  //     key: 'driverType',
+  //     label: 'Driver Type',
+  //     sortable: true,
+  //     render: (row) => (row.driverType === 'full_time' ? 'Full Time' : 'Part Time'),
+  //   },
+  //   {
+  //     key: 'vehicle',
+  //     label: 'Vehicle',
+  //     sortable: true,
+  //     render: (row) => row.vehicle.charAt(0).toUpperCase() + row.vehicle.slice(1),
+  //   },
+  //   { key: 'commissionPercentage', label: 'Commission (%)', sortable: true },
+  //   {
+  //     key: 'actions',
+  //     label: 'Actions',
+  //     render: (row) => (
+  //       <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
+  //         <CIcon icon={cilPencil} /> Edit
+  //       </CButton>
+  //     ),
+  //   },
+  // ]
+
   const headers = [
-    {
-      key: 'driverType',
-      label: 'Driver Type',
-      sortable: true,
-      render: (row) => (row.driverType === 'full_time' ? 'Full Time' : 'Part Time'),
-    },
-    {
-      key: 'vehicle',
-      label: 'Vehicle',
-      sortable: true,
-      render: (row) => row.vehicle.charAt(0).toUpperCase() + row.vehicle.slice(1),
-    },
-    { key: 'commissionPercentage', label: 'Commission (%)', sortable: true },
-    {
-      key: 'actions',
-      label: 'Actions',
-      render: (row) => (
-        <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
-          <CIcon icon={cilPencil} /> Edit
-        </CButton>
-      ),
-    },
-  ]
+  {
+    key: 'driverType',
+    label: t('table.driverType'),
+    sortable: true,
+    render: (row) =>
+      row.driverType === 'full_time'
+        ? t('driverType.full_time')
+        : t('driverType.part_time'),
+  },
+  {
+    key: 'vehicle',
+    label: t('table.vehicle'),
+    sortable: true,
+    render: (row) => t(`vehicle.${row.vehicle}`),
+  },
+  {
+    key: 'commissionPercentage',
+    label: t('table.commission'),
+    sortable: true,
+  },
+  {
+    key: 'actions',
+    label: t('table.actions'),
+    render: (row) => (
+      <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
+        <CIcon icon={cilPencil} /> {t('buttons.edit')}
+      </CButton>
+    ),
+  },
+]
+
 
   const filteredData = commissions.filter((c) => {
     const driverTypeLabel = c.driverType === 'full_time' ? 'Full Time' : 'Part Time'
@@ -98,7 +133,7 @@ const DriverCommission = () => {
     <>
       <CCard className="mb-4">
         <CCardHeader className="d-flex justify-content-between align-items-center flex-wrap gap-2">
-          <h5 className="mb-0">Driver Commissions</h5>
+          <h5 className="mb-0">{t('title')}</h5>
           <div className="input-group" style={{ width: '300px' }}>
             <span className="input-group-text bg-white">
               <CIcon icon={cilSearch} />
@@ -106,7 +141,7 @@ const DriverCommission = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search driver type or vehicle..."
+               placeholder={t('search')}
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
@@ -128,7 +163,7 @@ const DriverCommission = () => {
 
       {/* Update Modal */}
       <CModal visible={visibleModal} onClose={() => setVisibleModal(false)}>
-        <CModalHeader closeButton>Update Commission</CModalHeader>
+        <CModalHeader closeButton> {t('modal.title')}</CModalHeader>
         {editItem && (
           <Formik
             initialValues={{
@@ -143,7 +178,7 @@ const DriverCommission = () => {
               <Form>
                 <CModalBody>
                   <div className="mb-3">
-                    <label className="form-label">Driver Type</label>
+                    <label className="form-label">{t('form.driverType')}</label>
                     <input
                       type="text"
                       value={editItem.driverType === 'full_time' ? 'Full Time' : 'Part Time'}
@@ -152,7 +187,7 @@ const DriverCommission = () => {
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label">Vehicle</label>
+                    <label className="form-label">{t('form.vehicle')}</label>
                     <input
                       type="text"
                       value={editItem.vehicle.charAt(0).toUpperCase() + editItem.vehicle.slice(1)}
@@ -161,7 +196,7 @@ const DriverCommission = () => {
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label">Commission (%)</label>
+                    <label className="form-label">{t('form.commission')}</label>
                     <Field
                       name="commissionPercentage"
                       type="number"
@@ -179,10 +214,10 @@ const DriverCommission = () => {
                 </CModalBody>
                 <CModalFooter>
                   <CButton color="secondary" onClick={() => setVisibleModal(false)}>
-                    Cancel
+                    {t('buttons.cancel')}
                   </CButton>
                   <CButton type="submit" color="primary" disabled={isSubmitting}>
-                    {isSubmitting ? 'Updating...' : 'Update'}
+                     {isSubmitting ? t('buttons.updating') : t('buttons.update')}
                   </CButton>
                 </CModalFooter>
               </Form>

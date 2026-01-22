@@ -21,6 +21,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
+import { useTranslation } from 'react-i18next'
 
 const renderStars = (rating) => {
   const fullStars = Math.floor(rating)
@@ -34,6 +35,8 @@ const renderStars = (rating) => {
 }
 
 const ReviewsController = () => {
+  const { t } = useTranslation('reviews')
+
   const dispatch = useDispatch()
   const { list, loading, error } = useSelector((state) => state.review)
 
@@ -77,7 +80,7 @@ const ReviewsController = () => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-end mb-5">
-        <h4 className="mb-0">Products with Reviews</h4>
+        <h4 className="mb-0">{t('title')}</h4>
         <div className="d-flex gap-3">
           <CInputGroup style={{ maxWidth: '1000px' }}>
             <CInputGroupText>
@@ -85,29 +88,29 @@ const ReviewsController = () => {
             </CInputGroupText>
             <CFormInput
               type="text"
-              placeholder="Search product..."
+               placeholder={t('search_placeholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </CInputGroup>
 
-          <label style={{ paddingTop: '5px' }}>Sort:</label>
+          <label style={{ paddingTop: '5px' }}> {t('sort_label')}</label>
           <CFormSelect
             style={{ maxWidth: '140px' }}
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
-            <option value="latest">Latest</option>
-            <option value="oldest">Oldest</option>
-            <option value="highrating">High Rating</option>
-            <option value="lowrating">Low Rating</option>
+          <option value="latest">{t('sort.latest')}</option>
+          <option value="oldest">{t('sort.oldest')}</option>
+          <option value="highrating">{t('sort.highrating')}</option>
+          <option value="lowrating">{t('sort.lowrating')}</option>
           </CFormSelect>
         </div>
       </div>
 
       {loading && <Loader />}
       {error && <p className="text-danger">{error}</p>}
-      {!loading && !error && products.length === 0 && <p>No products found.</p>}
+      {!loading && !error && products.length === 0 && <p>{t('no_products')}</p>}
 
       {!loading &&
         !error &&
@@ -158,7 +161,7 @@ const ReviewsController = () => {
                         {product.productName}
                       </CCardTitle>
                       <CCardText className={isExpanded ? 'text-white' : ''}>
-                        Rating: {renderStars(overallRating)} ({reviewsCount} reviews)
+                        {t('rating_text')}: {renderStars(overallRating)} {t('reviews_count', { count: reviewsCount })}
                       </CCardText>
                     </div>
                   </div>
@@ -168,19 +171,19 @@ const ReviewsController = () => {
                   <div className="mt-3">
                     <CNav variant="tabs">
                       <CNavItem>
-                        <CNavLink
+                       <CNavLink
                           active={activeTab === 'product'}
                           onClick={() => handleTabClick(product._id, 'product')}
                         >
-                          Product Reviews
+                          {t('tabs.product')}
                         </CNavLink>
                       </CNavItem>
                       <CNavItem>
-                        <CNavLink
+                       <CNavLink
                           active={activeTab === 'driver'}
                           onClick={() => handleTabClick(product._id, 'driver')}
                         >
-                          Driver Reviews
+                          {t('tabs.driver')}
                         </CNavLink>
                       </CNavItem>
                     </CNav>
@@ -188,7 +191,7 @@ const ReviewsController = () => {
                     <CTabContent className="mt-3">
                       <CTabPane visible={activeTab === 'product'}>
                         {productReviews.length === 0 && (
-                          <p className="text-muted">No product reviews found.</p>
+                          <p className="text-muted">{t('no_product_reviews')}</p>
                         )}
                         {sortReviews(productReviews).map((review) => (
                           <ReviewCard key={review._id} review={review} />
@@ -197,7 +200,7 @@ const ReviewsController = () => {
 
                       <CTabPane visible={activeTab === 'driver'}>
                         {driverReviews.length === 0 && (
-                          <p className="text-muted">No driver reviews found.</p>
+                          <p className="text-muted">{t('no_driver_reviews')}</p>
                         )}
                         {sortReviews(driverReviews).map((review) => (
                           <ReviewCard key={review._id} review={review} isDriver />
@@ -215,6 +218,7 @@ const ReviewsController = () => {
 }
 
 const ReviewCard = ({ review, isDriver }) => {
+   const { t } = useTranslation('reviews')
   return (
     <CCard className="mb-2 border border-info">
       <CCardBody className="d-flex align-items-start gap-3">
@@ -226,17 +230,18 @@ const ReviewCard = ({ review, isDriver }) => {
           style={{ objectFit: 'cover', borderRadius: '50%', flexShrink: 0 }}
         />
         <div>
-          <CCardTitle className="fw-semibold mb-1 text-info">
-            {review.userFullName} {isDriver && '(Driver)'}
-            <span className="ms-2">{renderStars(review.rating)}</span>
-          </CCardTitle>
+         <CCardTitle className="fw-semibold mb-1 text-info">
+          {review.userFullName}
+          {isDriver && ` (${t('driver_label')})`}
+          <span className="ms-2">{renderStars(review.rating)}</span>
+        </CCardTitle>
           <div className="text-muted mb-2" style={{ fontSize: '0.875rem' }}>
             {moment(review.createdAt).format('MMMM D, YYYY h:mm A')}
           </div>
           <CCardText className="mb-2">{review.review}</CCardText>
           {review.reply && (
             <div className="mt-2 p-2 bg-light border-start border-success border-3 rounded">
-              <div className="fw-bold mb-1 text-success">Vendor Reply:</div>
+              <div className="fw-bold mb-1 text-success"> {t('vendor_reply')}:</div>
               <div>{review.reply.message}</div>
             </div>
           )}

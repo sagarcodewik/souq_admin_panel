@@ -1,0 +1,45 @@
+{
+  "title": "Driver Commissions",
+  "search": "Search driver type or vehicle...",
+
+  "table": {
+    "driverType": "Driver Type",
+    "vehicle": "Vehicle",
+    "commission": "Commission (%)",
+    "actions": "Actions"
+  },
+
+  "driverType": {
+    "full_time": "Full Time",
+    "part_time": "Part Time"
+  },
+
+  "vehicle": {
+    "van": "Van",
+    "bike": "Bike"
+  },
+
+  "modal": {
+    "title": "Update Commission"
+  },
+
+  "form": {
+    "driverType": "Driver Type",
+    "vehicle": "Vehicle",
+    "commission": "Commission (%)"
+  },
+
+  "buttons": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "update": "Update",
+    "updating": "Updating..."
+  },
+
+  "validation": {
+    "number": "Commission must be a number",
+    "required": "Commission is required",
+    "min": "Commission cannot be less than 0",
+    "max": "Commission cannot be greater than 100"
+  }
+}

@@ -50,7 +50,7 @@ const Store = () => {
     setCurrentPage(1)
   }
 
-  const headers = VendorHeaders(navigate, dispatch)
+  const headers = VendorHeaders(navigate, dispatch,t)
 
   return (
     <div>

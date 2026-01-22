@@ -25,8 +25,11 @@ import Loader from '../../../components/loader/Loader'
 import { fetchPromotions, updatePromotionStatus } from '../../../redux/slice/promotion'
 import { PromotionHeaders } from '../../../utils/header'
 import ConfirmActionModal from './ConfirmActionModal'
+import { useTranslation } from 'react-i18next'
 
 const Promotions = () => {
+  const { t } = useTranslation('promotions')
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -58,21 +61,11 @@ const Promotions = () => {
     setSelectedPromotion(promotion)
     setShowModal(true)
   }
-  // const handleStatusChange = async (updatePayload) => {
-  //   await dispatch(updatePromotionStatus(updatePayload));
-  //   dispatch(fetchPromotions({
-  //     page: currentPage,
-  //     pageSize,
-  //     sortKey,
-  //     sortDirection
-  //   }));
-  // };
+ 
   const handleStatusChange = (payload) => {
     let title = ''
     let message = null
     let confirmColor = 'danger'
-
-    // DELETE / RESTORE
     if ('isDeleted' in payload) {
       if (payload.isDeleted) {
         title = 'Delete Promotion'
@@ -89,8 +82,6 @@ const Promotions = () => {
         confirmColor = 'success'
       }
     }
-
-    // ACTIVATE / DEACTIVATE
     if ('isActive' in payload) {
       title = payload.isActive ? 'Activate Promotion' : 'Deactivate Promotion'
       message = `Are you sure you want to ${payload.isActive ? 'activate' : 'deactivate'} this promotion?`
@@ -181,7 +172,7 @@ const Promotions = () => {
   return (
     <div className="p-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4 className="mb-0">Promotions</h4>
+        <h4 className="mb-0">{t('title')}</h4>
       </div>
 
       {/* Search Inputs */}
@@ -192,7 +183,7 @@ const Promotions = () => {
           </CInputGroupText>
           <CFormInput
             type="text"
-            placeholder="Search by Title..."
+            placeholder={t('search.title')}
             value={titleSearch}
             onChange={(e) => setTitleSearch(e.target.value)}
           />
@@ -204,7 +195,7 @@ const Promotions = () => {
           </CInputGroupText>
           <CFormInput
             type="text"
-            placeholder="Search by Type..."
+            placeholder={t('search.type')}
             value={typeSearch}
             onChange={(e) => setTypeSearch(e.target.value)}
           />
@@ -216,7 +207,7 @@ const Promotions = () => {
           </CInputGroupText>
           <CFormInput
             type="text"
-            placeholder="Search by promotion code..."
+            placeholder={t('search.code')}
             value={codeSearch}
             onChange={(e) => setCodeSearch(e.target.value)}
           />
@@ -224,15 +215,15 @@ const Promotions = () => {
 
         {/* Is Active Filter */}
         <CInputGroup style={{ maxWidth: '200px' }}>
-          <CInputGroupText>Status</CInputGroupText>
+          <CInputGroupText>{t('search.status')}</CInputGroupText>
           <select
             className="form-select"
             value={isActiveSearch}
             onChange={(e) => setIsActiveSearch(e.target.value)}
           >
-            <option value="">All</option>
-            <option value="true">Active</option>
-            <option value="false">Inactive</option>
+          <option value="">{t('search.all')}</option>
+          <option value="true">{t('search.active')}</option>
+          <option value="false">{t('search.inactive')}</option>
           </select>
         </CInputGroup>
       </div>
@@ -242,7 +233,7 @@ const Promotions = () => {
       ) : (
         <DataTable
           data={promotions}
-          headers={PromotionHeaders(handleView, handleStatusChange)}
+          headers={PromotionHeaders(handleView, handleStatusChange,t)}
           isLoading={status === 'loading'}
           pageSize={pageSize}
           currentPage={currentPage}

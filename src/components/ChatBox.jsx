@@ -1,27 +1,28 @@
-// components/ChatBox.js
+
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMessagesByChatId, addSocketMessage } from '../redux/slice/chats.js'
 import io from 'socket.io-client'
 import styles from './chat.module.scss'
 import { localDateFormat } from '../utils/index'
+import { useTranslation } from 'react-i18next'
 
-// Keep socket outside to avoid re-creating
 const socket = io(process.env.REACT_APP_BASE_URL, { autoConnect: false })
 
 const ChatBox = ({ chatId, currentUserId, receiverId }) => {
+  const { t } = useTranslation('chatBox')
+
   const dispatch = useDispatch()
   const messages = useSelector((state) => state.chats.messages)
   const [newMessage, setNewMessage] = useState('')
   const messagesEndRef = useRef(null)
 
-  // Fetch messages when chatId changes
+
   useEffect(() => {
     if (!chatId) return
     dispatch(fetchMessagesByChatId(chatId))
   }, [chatId, dispatch])
 
-  // Socket connection only depends on chatId
   useEffect(() => {
     if (!chatId) return
 
@@ -62,7 +63,7 @@ const ChatBox = ({ chatId, currentUserId, receiverId }) => {
     <div className={styles.chat_box}>
       <div className={styles.chat_box__messages}>
         {messages.length === 0 ? (
-          <p className={styles.chat_box__empty}>No messages yet. Start the conversation!</p>
+          <p className={styles.chat_box__empty}>{t('empty')}</p>
         ) : (
           messages.map((msg, idx) => {
             const isOwn = msg.senderId === currentUserId
@@ -84,10 +85,10 @@ const ChatBox = ({ chatId, currentUserId, receiverId }) => {
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-          placeholder="Type your message..."
+          placeholder={t('input.placeholder')}
         />
         <button onClick={sendMessage} disabled={!newMessage.trim()}>
-          Send
+          {t('buttons.send')}
         </button>
       </div>
     </div>

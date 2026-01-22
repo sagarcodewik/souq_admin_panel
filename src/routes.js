@@ -97,7 +97,7 @@ const routes = [
   { path: '/category', name: 'Category', element: Category },
   {
     path: '/stores/products/reviews',
-    name: 'Product Review',
+    name: 'Product Review', 
     element: Product_reviews,
   },
   {

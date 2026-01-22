@@ -1,0 +1,53 @@
+{
+  "title": "تسعير العروض",
+  "search": "ابحث عن العرض...",
+
+  "table": {
+    "promotionType": "نوع العرض",
+    "price": "السعر (ل.س)",
+    "pricingType": "نوع التسعير",
+    "actions": "الإجراءات"
+  },
+
+  "modal": {
+    "title": "تحديث تسعير العرض"
+  },
+
+  "form": {
+    "promotionType": "نوع العرض",
+    "price": "السعر",
+    "pricingType": "نوع التسعير",
+    "selectPricingType": "اختر نوع التسعير"
+  },
+
+  "buttons": {
+    "edit": "تعديل",
+    "cancel": "إلغاء",
+    "update": "تحديث",
+    "updating": "جاري التحديث..."
+  },
+
+  "pricingType": {
+    "weekly": "أسبوعي",
+    "monthly": "شهري",
+    "yearly": "سنوي",
+    "one-time": "مرة واحدة",
+    "lifetime": "مدى الحياة",
+    "per-use": "لكل استخدام",
+    "daily": "يومي",
+    "hourly": "بالساعة",
+    "free": "مجاني"
+  },
+
+  "promotionType": {
+    "flash-sale": "عرض خاطف",
+    "bundle": "باقة",
+    "promotion": "عرض"
+  },
+
+  "validation": {
+    "price_number": "يجب أن يكون السعر رقمًا",
+    "price_required": "السعر مطلوب",
+    "price_min": "لا يمكن أن يكون السعر سالبًا"
+  }
+}

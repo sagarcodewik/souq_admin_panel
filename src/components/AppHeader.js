@@ -20,8 +20,11 @@ import { cilContrast, cilMenu, cilMoon, cilSun } from '@coreui/icons'
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { set } from '../redux/slice/uiSlice'
+import { useTranslation } from 'react-i18next'
 
 const AppHeader = () => {
+  const { t } = useTranslation('common')
+
   const headerRef = useRef()
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
   const dispatch = useDispatch()
@@ -29,25 +32,99 @@ const AppHeader = () => {
   const location = useLocation()
 
   // Route path to title mapping
-  const routeTitles = {
-    '/dashboard': 'Dashboard',
-    '/vendors/manage': 'Manage Vendors',
-    '/vendors/requests': 'Vendor Requests',
-    '/drivers/manage': 'Manage Drivers',
-    '/drivers/requests': 'Driver Requests',
-    '/orders': 'Active Orders',
-    '/stores': 'Stores',
-    '/category': 'Category',
-    '/advertisements': 'Advertisements',
-    '/promotions': 'Promotions',
-    '/stores/products': 'Vendor Products',
-    '/stores/products/reviews': 'Product Reviews',
-    '/reviews': 'Reviews',
-  }
+//   export const routeTitles = {
+//   '/dashboard': 'Dashboard',
 
+//   // Vendors
+//   '/vendors/manage': 'Manage Vendors',
+//   '/vendors/requests': 'Vendor Requests',
+
+//   // Drivers
+//   '/drivers/manage': 'Manage Drivers',
+//   '/drivers/requests': 'Driver Requests',
+
+//   // Orders
+//   '/orders': 'Active Orders',
+//   '/failed-orders': 'Failed Orders',
+
+//   // Stores & Category
+//   '/stores': 'Stores',
+//   '/category': 'Category',
+
+//   // Ads & Promotions
+//   '/advertisements': 'Advertisements',
+//   '/promotions': 'Promotions',
+
+//   // Reviews
+//   '/reviews': 'Reviews',
+
+//   // Chats
+//   '/customer-chats': 'Customer Chats',
+//   '/driver-chats': 'Driver Chats',
+//   '/vendor-chats': 'Vendor Chats',
+
+//   // Pricing & Finance
+//   '/driver-commission': 'Driver Commission',
+//   '/add-on-pricing': 'Add-on Pricing',
+//   '/promotion-pricing': 'Promotion Pricing',
+//   '/finances': 'Finances',
+//   '/driver-payments': 'Driver Payments',
+// }
+ const routeTitles = {
+  '/dashboard': 'nav.dashboard',
+
+  // Vendors
+  '/vendors/manage': 'nav.manage_vendors',
+  '/vendors/requests': 'nav.vendor_requests',
+
+  // Drivers
+  '/drivers/manage': 'nav.manage_drivers',
+  '/drivers/requests': 'nav.driver_requests',
+
+  // Orders
+  '/orders': 'nav.active_orders',
+  '/failed-orders': 'nav.failed_orders',
+
+  // Stores & Category
+  '/stores': 'nav.stores',
+  '/category': 'nav.category',
+
+  // Ads & Promotions
+  '/advertisements': 'nav.advertisements',
+  '/promotions': 'nav.promotions',
+
+  // Reviews
+  '/reviews': 'nav.reviews',
+
+  // Chats
+  '/customer-chats': 'nav.customer_chats',
+  '/driver-chats': 'nav.driver_chats',
+  '/vendor-chats': 'nav.vendor_chats',
+
+  // Pricing & Finance
+  '/driver-commission': 'nav.driver_commission',
+  '/add-on-pricing': 'nav.add_on_pricing',
+  '/promotion-pricing': 'nav.promotion_pricing',
+  '/finances': 'nav.finances',
+  '/driver-payments': 'nav.driver_payments',
+}
   // Extract title based on current route
-  const pageTitle = routeTitles[location.pathname] || 'Page'
+  const getPageTitle = (pathname, t) => {
+    // exact match
+    if (routeTitles[pathname]) {
+      return t(routeTitles[pathname])
+    }
+   
 
+
+  // nested routes support
+  const matchedRoute = Object.keys(routeTitles).find((route) =>
+    pathname.startsWith(route),
+  )
+
+  return matchedRoute ? t(routeTitles[matchedRoute]) : t('nav.dashboard')
+}
+ const pageTitle = getPageTitle(location.pathname, t)
   useEffect(() => {
     document.addEventListener('scroll', () => {
       headerRef.current &&
@@ -68,53 +145,10 @@ const AppHeader = () => {
           >
             <CIcon icon={cilMenu} size="lg" />
           </CHeaderToggler>
-          <span className="ms-3 fw-bold fs-5">{pageTitle}</span>
+          <span className="ms-3 fw-bold fs-5">{pageTitle }</span>
         </div>
 
         <CHeaderNav className="ms-auto">
-          {/* <li className="nav-item py-1">
-            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
-          </li>
-          <CDropdown variant="nav-item" placement="bottom-end">
-            <CDropdownToggle caret={false}>
-              {colorMode === 'dark' ? (
-                <CIcon icon={cilMoon} size="lg" />
-              ) : colorMode === 'auto' ? (
-                <CIcon icon={cilContrast} size="lg" />
-              ) : (
-                <CIcon icon={cilSun} size="lg" />
-              )}
-            </CDropdownToggle>
-            <CDropdownMenu>
-              <CDropdownItem
-                active={colorMode === 'light'}
-                className="d-flex align-items-center"
-                as="button"
-                onClick={() => setColorMode('light')}
-              >
-                <CIcon className="me-2" icon={cilSun} size="lg" /> Light
-              </CDropdownItem>
-              <CDropdownItem
-                active={colorMode === 'dark'}
-                className="d-flex align-items-center"
-                as="button"
-                onClick={() => setColorMode('dark')}
-              >
-                <CIcon className="me-2" icon={cilMoon} size="lg" /> Dark
-              </CDropdownItem>
-              <CDropdownItem
-                active={colorMode === 'auto'}
-                className="d-flex align-items-center"
-                as="button"
-                onClick={() => setColorMode('auto')}
-              >
-                <CIcon className="me-2" icon={cilContrast} size="lg" /> Auto
-              </CDropdownItem>
-            </CDropdownMenu>
-          </CDropdown>
-          <li className="nav-item py-1">
-            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
-          </li> */}
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>

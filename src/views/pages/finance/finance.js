@@ -11,12 +11,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchFinancialBreakdown } from '../../../redux/slice/finance'
 import DataTable from '../../../components/datatable/datatable'
 import { useDebounce } from 'use-debounce'
-
-// ✅ Import jsPDF & autoTable
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import { useTranslation } from 'react-i18next'
 
 const Finance = () => {
+  const { t } = useTranslation('finances')
   const dispatch = useDispatch()
   const { financials, status, totalRecords, currentPage, pageSize } = useSelector(
     (state) => state.finance,
@@ -36,13 +36,13 @@ const Finance = () => {
   // ---------------- PDF Download ----------------
   const handleDownloadPDF = () => {
     if (!financials || financials.length === 0) {
-      alert('No data available to download.')
+      alert(t('noData'))
       return
     }
 
     const doc = new jsPDF({ orientation: 'landscape' })
     doc.setFontSize(16)
-    doc.text('Admin Financial Breakdown', 14, 15)
+    doc.text(t('pdf.title'), 14, 15)
 
     const tableColumns = [
       'Order Number',
@@ -77,21 +77,67 @@ const Finance = () => {
   }
   // -------------------------------------------------
 
+  // const headers = [
+  //   { key: 'orderNumber', label: 'Order Number', sortable: true },
+  //   { key: 'vendor', label: 'Vendor Email', sortable: true, render: (row) => row.vendor?.email },
+  //   { key: 'grandTotal', label: 'Grand Total(SYP)', sortable: true, render: (row) => `${row.grandTotal.toFixed(2)}` },
+  //   { key: 'driverEarnings', label: 'Driver Earnings(SYP)', sortable: true, render: (row) => `${row.driverEarnings.toFixed(2)}` },
+  //   { key: 'adminCommission', label: 'Admin Commission(SYP)', sortable: true, render: (row) => `${row.adminCommission.toFixed(2)}` },
+  //   { key: 'vendorEarnings', label: 'Vendor Earnings(SYP)', sortable: true, render: (row) => `${row.vendorEarnings.toFixed(2)}` },
+  //   { key: 'createdAt', label: 'Date', sortable: true, render: (row) => new Date(row.createdAt).toLocaleDateString() },
+  // ]
+
   const headers = [
-    { key: 'orderNumber', label: 'Order Number', sortable: true },
-    { key: 'vendor', label: 'Vendor Email', sortable: true, render: (row) => row.vendor?.email },
-    { key: 'grandTotal', label: 'Grand Total(SYP)', sortable: true, render: (row) => `${row.grandTotal.toFixed(2)}` },
-    { key: 'driverEarnings', label: 'Driver Earnings(SYP)', sortable: true, render: (row) => `${row.driverEarnings.toFixed(2)}` },
-    { key: 'adminCommission', label: 'Admin Commission(SYP)', sortable: true, render: (row) => `${row.adminCommission.toFixed(2)}` },
-    { key: 'vendorEarnings', label: 'Vendor Earnings(SYP)', sortable: true, render: (row) => `${row.vendorEarnings.toFixed(2)}` },
-    { key: 'createdAt', label: 'Date', sortable: true, render: (row) => new Date(row.createdAt).toLocaleDateString() },
-  ]
+  {
+    key: 'orderNumber',
+    label: t('table.orderNumber'),
+    sortable: true,
+  },
+  {
+    key: 'vendor',
+    label: t('table.vendorEmail'),
+    sortable: true,
+    render: (row) => row.vendor?.email || '-',
+  },
+  {
+    key: 'grandTotal',
+    label: t('table.grandTotal'),
+    sortable: true,
+    render: (row) => row.grandTotal?.toFixed(2) ?? '0.00',
+  },
+  {
+    key: 'driverEarnings',
+    label: t('table.driverEarnings'),
+    sortable: true,
+    render: (row) => row.driverEarnings?.toFixed(2) ?? '0.00',
+  },
+  {
+    key: 'adminCommission',
+    label: t('table.adminCommission'),
+    sortable: true,
+    render: (row) => row.adminCommission?.toFixed(2) ?? '0.00',
+  },
+  {
+    key: 'vendorEarnings',
+    label: t('table.vendorEarnings'),
+    sortable: true,
+    render: (row) => row.vendorEarnings?.toFixed(2) ?? '0.00',
+  },
+  {
+    key: 'createdAt',
+    label: t('table.date'),
+    sortable: true,
+    render: (row) =>
+      row.createdAt ? new Date(row.createdAt).toLocaleDateString() : '-',
+  },
+]
+
 
   return (
     <>
       <CCard className="mb-4">
         <CCardHeader className="d-flex justify-content-between align-items-center flex-wrap gap-2">
-          <h5 className="mb-0">Admin Financial Breakdown</h5>
+          <h5 className="mb-0">{t('title')}</h5>
           <div className="d-flex align-items-center gap-3">
             <div className="input-group" style={{ width: '350px' }}>
               <span className="input-group-text bg-white">
@@ -100,14 +146,14 @@ const Finance = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Search vendor email and order number"
+                placeholder={t('search')}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
             </div>
             <CButton color="primary" onClick={handleDownloadPDF}>
               <CIcon icon={cilCloudDownload} className="me-2" />
-              Download PDF
+              {t('downloadPdf')}
             </CButton>
           </div>
         </CCardHeader>

@@ -1,0 +1,53 @@
+{
+  "title": "Promotion Pricing",
+  "search": "Search promotion...",
+
+  "table": {
+    "promotionType": "Promotion Type",
+    "price": "Price (SYP)",
+    "pricingType": "Pricing Type",
+    "actions": "Actions"
+  },
+
+  "modal": {
+    "title": "Update Promotion Pricing"
+  },
+
+  "form": {
+    "promotionType": "Promotion Type",
+    "price": "Price",
+    "pricingType": "Pricing Type",
+    "selectPricingType": "Select Pricing Type"
+  },
+
+  "buttons": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "update": "Update",
+    "updating": "Updating..."
+  },
+
+  "pricingType": {
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "one-time": "One Time",
+    "lifetime": "Lifetime",
+    "per-use": "Per Use",
+    "daily": "Daily",
+    "hourly": "Hourly",
+    "free": "Free"
+  },
+
+  "promotionType": {
+    "flash-sale": "Flash Sale",
+    "bundle": "Bundle",
+    "promotion": "Promotion"
+  },
+
+  "validation": {
+    "price_number": "Price must be a number",
+    "price_required": "Price is required",
+    "price_min": "Price cannot be negative"
+  }
+}

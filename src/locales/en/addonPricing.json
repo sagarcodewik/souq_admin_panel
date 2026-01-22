@@ -1,0 +1,44 @@
+{
+  "title": "Addon Pricing",
+  "search": "Search addon...",
+
+  "table": {
+    "addon": "Addon",
+    "price": "Price",
+    "days": "Days",
+    "pricingType": "Pricing Type",
+    "actions": "Actions"
+  },
+
+  "modal": {
+    "title": "Update Addon Pricing"
+  },
+
+  "form": {
+    "addon": "Addon",
+    "price": "Price",
+    "days": "Days",
+    "pricingType": "Pricing Type"
+  },
+
+  "buttons": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "update": "Update",
+    "updating": "Updating..."
+  },
+
+  "validation": {
+    "price_number": "Price must be a number",
+    "price_required": "Price is required",
+    "price_min": "Price cannot be negative",
+    "days_number": "Days must be a number",
+    "days_min": "Days cannot be negative"
+  },
+
+  "pricingType": {
+    "one_time": "One Time",
+    "until_expiration": "Until Expiration"
+  }
+}
+

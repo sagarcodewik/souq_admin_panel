@@ -10,6 +10,11 @@
     "phone": "Phone",
     "registered_on": "Registered On"
   },
+  "actions": {
+    "view_vendor": "View Vendor Details",
+    "activate_vendor": "Activate Vendor",
+    "deactivate_vendor": "Deactivate Vendor"
+  },
 
   "empty": "No vendors found."
 }
