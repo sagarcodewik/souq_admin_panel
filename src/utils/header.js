@@ -208,7 +208,7 @@ export const AllVendorHeaders = (
 
   {
     key: 'actions',
-    label: 'Actions',
+   label: t('table.actions'),
     render: (row) => (
       <div className="d-flex gap-2">
         <CTooltip content="View Vendor Details" placement="top">

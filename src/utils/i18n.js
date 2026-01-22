@@ -24,6 +24,7 @@ import enDriverChats from '../locales/en/driverChats.json'
 import enChatBox from '../locales/en/chatBox.json'
 import enVendorChats from '../locales/en/vendorChats.json'
 import enAdvertisements from '../locales/en/advertisements.json'
+import enOrders from '../locales/en/orders.json'
 
 
 // Arabic
@@ -49,6 +50,7 @@ import arDriverChats from '../locales/ar/driverChats.json'
 import arChatBox from '../locales/ar/chatBox.json'
 import arVendorChats from '../locales/ar/vendorChats.json'
 import arAdvertisements from '../locales/ar/advertisements.json'
+import arOrders from '../locales/ar/orders.json'
 
 const savedLang = localStorage.getItem('lang') || 'en'
 document.body.dir = savedLang === 'ar' ? 'rtl' : 'ltr'
@@ -77,7 +79,8 @@ i18n.use(initReactI18next).init({
       customerChats: enCustomerChats,
       driverChats: enDriverChats,
       vendorChats: enVendorChats,
-      advertisements: enAdvertisements
+      advertisements: enAdvertisements,
+      Orders: enOrders,
     },
     ar: {
       common: arCommon,
@@ -101,7 +104,8 @@ i18n.use(initReactI18next).init({
       customerChats: arCustomerChats,
       driverChats: arDriverChats,
       vendorChats: arVendorChats,
-      advertisements: arAdvertisements
+      advertisements: arAdvertisements,
+      Orders: arOrders,
 
     },
   },

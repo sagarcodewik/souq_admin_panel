@@ -35,5 +35,9 @@
     "switch_to_arabic": "Switch to Arabic",
     "switch_to_english": "Switch to English",
     "footer_rights": "Dual_App Marketplace. All rights reserved."
+  },
+   "table": {
+    "no_data": "No data found",
+    "actions": "Actions"
   }
 }

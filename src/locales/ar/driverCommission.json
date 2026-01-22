@@ -8,34 +8,28 @@
     "commission": "العمولة (%)",
     "actions": "الإجراءات"
   },
-
   "driverType": {
     "full_time": "دوام كامل",
     "part_time": "دوام جزئي"
   },
-
   "vehicle": {
     "van": "فان",
     "bike": "دراجة"
   },
-
   "modal": {
     "title": "تحديث العمولة"
   },
-
   "form": {
     "driverType": "نوع السائق",
     "vehicle": "المركبة",
     "commission": "نسبة العمولة (%)"
   },
-
   "buttons": {
     "edit": "تعديل",
     "cancel": "إلغاء",
     "update": "تحديث",
     "updating": "جاري التحديث..."
   },
-
   "validation": {
     "number": "يجب أن تكون العمولة رقمًا",
     "required": "العمولة مطلوبة",
