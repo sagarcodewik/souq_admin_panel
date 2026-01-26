@@ -18,6 +18,7 @@ import financeReducer from './slice/finance'
 import addonPricingReducer from './slice/addonPricing' // ← new
 import promotionPricingReducer from './slice/promotionPricing' // ← new
 import adminDriverPaymentsReducer from "./slice/paymentApproval";
+import subAdminReducer from './slice/subAdmin'
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -35,6 +36,7 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     driverCommission: commissionReducer,
     finance: financeReducer,
+    subAdmin: subAdminReducer,
     addonPricing: addonPricingReducer, // ← new
     promotionPricing: promotionPricingReducer, // ← new
     adminDriverPayments: adminDriverPaymentsReducer,

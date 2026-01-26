@@ -5,35 +5,67 @@ import { AppSidebar, AppHeader, AppFooter } from '../components/index'
 import routes from '../routes'
 import { Routes, Route } from 'react-router-dom'
 import Loader from '../components/loader/Loader'
-import { role } from '../utils/constants'
+import { ROLE } from '../utils/constants'
 const DefaultLayout = () => {
   const [isAuthorized, setIsAuthorized] = useState(null)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const token = localStorage.getItem('token')
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
 
-    if (!token) {
+  //   if (!token) {
+  //     setIsAuthorized(false)
+  //     return
+  //   }
+  //   try {
+  //     const decoded = jwtDecode(token)
+  //     const currentTime = Date.now() / 1000
+  //     if (decoded.exp < currentTime) {
+  //       localStorage.removeItem('token')
+  //       setIsAuthorized(false)
+  //       return
+  //     }
+  //     if (decoded?.role === role) {
+  //       setIsAuthorized(true)
+  //     } else {
+  //       setIsAuthorized(false)
+  //     }
+  //   } catch (error) {
+  //     setIsAuthorized(false)
+  //   }
+  // }, [])
+  useEffect(() => {
+  const token = localStorage.getItem('token')
+
+  if (!token) {
+    setIsAuthorized(false)
+    return
+  }
+
+  try {
+    const decoded = jwtDecode(token)
+    const currentTime = Date.now() / 1000
+
+    // token expired
+    if (decoded.exp && decoded.exp < currentTime) {
+      localStorage.removeItem('token')
       setIsAuthorized(false)
       return
     }
-    try {
-      const decoded = jwtDecode(token)
-      const currentTime = Date.now() / 1000
-      if (decoded.exp < currentTime) {
-        localStorage.removeItem('token')
-        setIsAuthorized(false)
-        return
-      }
-      if (decoded?.role === role) {
-        setIsAuthorized(true)
-      } else {
-        setIsAuthorized(false)
-      }
-    } catch (error) {
+
+    // ✅ correct role check
+    const allowedRoles = [ROLE.ADMIN, ROLE.SUB_ADMIN]
+
+    if (allowedRoles.includes(decoded.role)) {
+      setIsAuthorized(true)
+    } else {
       setIsAuthorized(false)
     }
-  }, [])
+  } catch (error) {
+    console.error('Invalid token', error)
+    setIsAuthorized(false)
+  }
+}, [])
 
   // useEffect(() => {
   //   if (isAuthorized === false) {

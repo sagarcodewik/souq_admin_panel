@@ -18,6 +18,35 @@ const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.ui.sidebarUnfoldable) // 👈 use `state.ui`
   const sidebarShow = useSelector((state) => state.ui.sidebarShow) // 👈 use `state.ui`
+  const user = useSelector((state) => state.auth.user)
+  const userPermissions = user?.permissions || []
+  const isAdmin = user?.role === 10
+  const filterNavigationByPermissions = (nav) => {
+    const isAdmin = user?.role === 10
+
+    if (isAdmin) return nav
+
+    return nav
+      .map((item) => {
+        if (item.adminOnly) return null
+
+        if (item.items) {
+          const filteredItems = item.items.filter(
+            (child) => !child.permission || userPermissions.includes(child.permission),
+          )
+
+          if (!filteredItems.length) return null
+          return { ...item, items: filteredItems }
+        }
+
+        if (item.permission && !userPermissions.includes(item.permission)) {
+          return null
+        }
+
+        return item
+      })
+      .filter(Boolean)
+  }
 
   return (
     <CSidebar
@@ -33,7 +62,14 @@ const AppSidebar = () => {
       <CSidebarHeader className="border-bottom">
         <Link to="/dashboard" className="text-decoration-none">
           <CSidebarBrand>
-            <img src="/logo.svg" alt="Logo" className="sidebar-brand-full" height={45} width={90} style={{ backgroundColor: "white" }}/>
+            <img
+              src="/logo.svg"
+              alt="Logo"
+              className="sidebar-brand-full"
+              height={45}
+              width={90}
+              style={{ backgroundColor: 'white' }}
+            />
             <img src="/x.svg" alt="Logo" className="sidebar-brand-narrow" height={45} width={40} />
             {/* <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} /> */}
           </CSidebarBrand>
@@ -45,7 +81,7 @@ const AppSidebar = () => {
         />
       </CSidebarHeader>
 
-      <AppSidebarNav items={navigation} />
+      <AppSidebarNav items={filterNavigationByPermissions(navigation)} />
 
       <CSidebarFooter className="border-top d-none d-lg-flex">
         <CSidebarToggler

@@ -9,7 +9,7 @@ export const login = createAsyncThunk(
       const response = await HttpClient.post('/user/login', {
         email,
         password,
-        role: Number(process.env.REACT_APP_ROLE || 10),
+        // role: Number(process.env.REACT_APP_ROLE || 10),
       })
       console.log('Login response:', response.data)
       return response.data
@@ -18,10 +18,12 @@ export const login = createAsyncThunk(
     }
   },
 )
-
+const storedUser = localStorage.getItem('user')
+const storedToken = localStorage.getItem('token')
 const initialState = {
-  email: null,
-  token: null,
+  user: storedUser ? JSON.parse(storedUser) : null, // ✅ ADD
+  email: storedUser ? JSON.parse(storedUser).email : null,
+  token: storedToken || null,
   status: 'idle',
   error: null,
 }
@@ -48,8 +50,10 @@ const authSlice = createSlice({
         const { token, user } = payload.data
         state.status = 'succeeded'
         state.email = user.email
+         state.user = user
         state.token = token
         localStorage.setItem('token', token)
+        localStorage.setItem('user', JSON.stringify(user))
         toast.success('Login successful!')
       })
       .addCase(login.rejected, (state, { payload }) => {
