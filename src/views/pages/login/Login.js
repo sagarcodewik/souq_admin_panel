@@ -19,6 +19,7 @@ import { login } from '../../../redux/slice/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import styles from './login.module.scss'
+import { getAdminLandingRoute } from '../../../utils/constants'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -31,17 +32,33 @@ const Login = () => {
     password: '',
   }
 
+  // const handleSubmit = async (values, { setSubmitting }) => {
+  //   try {
+  //     setProcessing(true)
+  //     await dispatch(login(values)).unwrap()
+  //     navigate('/dashboard')
+  //   } catch (error) {
+  //     console.error('Login failed:', error)
+  //     setProcessing(false)
+  //   } finally {
+  //     setSubmitting(false)
+  //     // setProcessing(false)
+  //   }
+  // }
+
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       setProcessing(true)
-      await dispatch(login(values)).unwrap()
-      navigate('/dashboard')
+
+      const payload = await dispatch(login(values)).unwrap()
+      const { user } = payload.data
+      const landingRoute = getAdminLandingRoute(user)
+      navigate(landingRoute, { replace: true })
     } catch (error) {
       console.error('Login failed:', error)
       setProcessing(false)
     } finally {
       setSubmitting(false)
-      // setProcessing(false)
     }
   }
   if (status === 'loading' || processing) return <Loader />

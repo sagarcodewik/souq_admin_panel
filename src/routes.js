@@ -83,6 +83,7 @@ const Failed_Orders = React.lazy(() => import('./views/pages/failed_orders/Faile
 const Add_on_pricing = React.lazy(() => import('./views/pages/add_on_pricing/Add_on_pricing'))
 const PromotionPricing = React.lazy(() => import('./views/pages/promotionPricing/PromotionPricing'))
 const DriverPaymentsApproval = React.lazy(() => import('./views/pages/paymentApproval/paymentApproval'))
+const SubAdmin = React.lazy(() => import('./views/pages/subadmin/Subadmin'))
 
 // Route definitions
 const routes = [
@@ -93,6 +94,7 @@ const routes = [
   { path: '/drivers/requests', name: 'Driver Requests', element: Driver_request },
   { path: '/drivers/manage', name: 'Manage Drivers', element: Manage_driver },
   { path: '/stores', name: 'Stores', element: Store },
+  { path: '/sub-admin', name: 'Subadmin', element: SubAdmin },
   { path: '/stores/products', name: 'Vendor Products', element: VendorProduct },
   { path: '/category', name: 'Category', element: Category },
   {
