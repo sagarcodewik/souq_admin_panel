@@ -1,0 +1,32 @@
+{
+  "title": "Pending Driver Requests",
+
+  "table": {
+    "serial": "S.No.",
+    "email": "Email",
+    "status": "Status",
+    "actions": "Actions"
+  },
+
+  "actions": {
+    "approve": "Approve",
+    "reject": "Reject",
+    "view": "View Details"
+  },
+
+  "empty": "No pending drivers found.",
+
+  "modal": {
+    "title": "Driver Details",
+    "email": "Email",
+    "full_name": "Full Name",
+    "id_front": "ID Document Front",
+    "id_back": "ID Document Back",
+    "license_front": "Driving License Front",
+    "license_back": "Driving License Back",
+    "status": "Status",
+    "view_document": "View Document",
+    "na": "N/A",
+    "close": "Close"
+  }
+}

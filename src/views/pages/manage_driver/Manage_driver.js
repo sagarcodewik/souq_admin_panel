@@ -19,8 +19,10 @@ import { useDebounce } from 'use-debounce'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import GoogleMapMarkers from '../../../components/GoogleMapMarkers'
+import { useTranslation } from 'react-i18next'
 
 const ManageDriver = () => {
+  const { t } = useTranslation('drivers')
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [socket, setSocket] = useState(null)
@@ -156,6 +158,7 @@ const ManageDriver = () => {
     setVisible,
     onToggleDelete,
     onToggleStatus,
+      t,
   )
 
   return (
@@ -165,14 +168,14 @@ const ManageDriver = () => {
       ) : (
         <div className="card-body">
           <div className="d-flex justify-content-between align-items-center mb-3">
-            <h4 className="mb-3">Drivers</h4>
+            <h4 className="mb-3">{t('title')}</h4>
             <div className="input-group" style={{ maxWidth: '300px' }}>
               <span className="input-group-text bg-white border-end-0">
                 <CIcon icon={cilSearch} />
               </span>
               <CFormInput
                 type="text"
-                placeholder="Search by email and name..."
+                 placeholder={t('search_placeholder')}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 autoFocus
@@ -196,7 +199,7 @@ const ManageDriver = () => {
 
       {/* Active Delivering Drivers Section */}
       <div className="mt-4">
-        <h5>Active Delivering Drivers</h5>
+        <h5>{t('active_delivering.title')}</h5>
 
         {/* Debug Information */}
         <div
@@ -209,13 +212,19 @@ const ManageDriver = () => {
             fontSize: '14px',
           }}
         >
-          <strong>Debug Information:</strong>
+          {/* <strong>Debug Information:</strong>
           <br />• API Key Present: {process.env.REACT_APP_GOOGLE_MAP_API ? 'Yes' : 'No'}
           <br />• Total Drivers: {activeDeliveringDrivers.length}
           <br />• Drivers with Location:{' '}
           {activeDeliveringDrivers.filter((d) => d?.location?.coordinates).length}
           <br />• Socket Connected: {socketConnected ? 'Yes' : 'No'}
-          <br />• Base URL: {process.env.REACT_APP_BASE_URL || 'Not set'}
+          <br />• Base URL: {process.env.REACT_APP_BASE_URL || 'Not set'} */}
+          <strong>{t('debug.title')}:</strong>
+            <br />• {t('debug.api_key')}: {process.env.REACT_APP_GOOGLE_MAP_API ? t('yes', { ns: 'common' }) : t('no', { ns: 'common' })}
+            <br />• {t('debug.total_drivers')}: {activeDeliveringDrivers.length}
+            <br />• {t('debug.drivers_with_location')}: {activeDeliveringDrivers.filter(d => d?.location?.coordinates).length}
+            <br />• {t('debug.socket_connected')}: {socketConnected ? t('yes', { ns: 'common' }) : t('no', { ns: 'common' })}
+            <br />• {t('debug.base_url')}: {process.env.REACT_APP_BASE_URL || '-'}
         </div>
 
         {!socketConnected ? (
@@ -261,12 +270,12 @@ const ManageDriver = () => {
       {/* Driver Details Modal */}
       <CModal visible={visible} onClose={() => setVisible(false)} size="lg">
         <CModalHeader onClose={() => setVisible(false)}>
-          <CModalTitle>Driver Details</CModalTitle>
+          <CModalTitle>{t('modal.title')}</CModalTitle>
         </CModalHeader>
         <CModalBody>
           {selectedDriver && (
             <div>
-              <p>
+              {/* <p>
                 <strong>Name:</strong> {selectedDriver.FullName}
               </p>
               <p>
@@ -280,6 +289,17 @@ const ManageDriver = () => {
               </p>
               <p>
                 <strong>Currently Delivering:</strong> {selectedDriver.isDelivering ? 'Yes' : 'No'}
+              </p> */}
+              
+              <p><strong>{t('modal.name')}:</strong> {selectedDriver.FullName}</p>
+              <p><strong>{t('modal.email')}:</strong> {selectedDriver.user?.email}</p>
+              <p><strong>{t('modal.status')}:</strong> {selectedDriver.status}</p>
+              <p><strong>{t('modal.vehicle_type')}:</strong> {selectedDriver.vehicleType}</p>
+              <p>
+                <strong>{t('modal.currently_delivering')}:</strong>{' '}
+                {selectedDriver.isDelivering
+                  ? t('yes', { ns: 'common' })
+                  : t('no', { ns: 'common' })}
               </p>
               {selectedDriver.location?.coordinates && (
                 <p>
@@ -293,7 +313,7 @@ const ManageDriver = () => {
         </CModalBody>
         <CModalFooter>
           <CButton color="secondary" onClick={() => setVisible(false)}>
-            Close
+          {t('modal.close')}
           </CButton>
         </CModalFooter>
       </CModal>

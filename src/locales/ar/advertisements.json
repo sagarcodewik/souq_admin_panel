@@ -1,0 +1,66 @@
+{
+  "title": "إدارة الإعلانات",
+
+  "tabs": {
+    "pending": "قيد المراجعة",
+    "approved": "موافق عليه",
+    "rejected": "مرفوض"
+  },
+
+  "filters": {
+    "search": "بحث في الإعلانات...",
+    "allCategories": "جميع الفئات",
+    "realEstate": "عقارات",
+    "cars": "سيارات",
+    "usedItems": "مستعمل",
+    "allStatus": "كل الحالات",
+    "active": "غير مُبلّغ عنه",
+    "reported": "مُبلّغ عنه"
+  },
+
+  "empty": {
+    "noAds": "لا توجد إعلانات."
+  },
+
+  "actions": {
+    "approve": "موافقة",
+    "reject": "رفض",
+    "delete": "حذف",
+    "cancel": "إلغاء"
+  },
+
+  "modal": {
+    "rejectTitle": "رفض الإعلان",
+    "rejectPlaceholder": "أدخل سبب الرفض...",
+    "detailsTitle": "تفاصيل الإعلان"
+  },
+
+  "statusMap": {
+    "pending": "قيد المراجعة",
+    "approved": "موافق عليه",
+    "rejected": "مرفوض"
+  },
+
+  "labels": {
+    "price": "السعر",
+    "category": "الفئة",
+    "status": "الحالة",
+    "description": "الوصف",
+    "location": "الموقع",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "agent": "الوسيط",
+    "reported": "تم الإبلاغ",
+    "yes": "نعم",
+    "no": "لا",
+    "notSpecified": "غير محدد",
+    "noDescription": "لا يوجد وصف",
+    "contactMethod": "طريقة التواصل",
+    "contactTime": "وقت التواصل المفضل"
+  },
+  "statusMap": {
+  "pending": "قيد المراجعة",
+  "approved": "موافق عليه",
+  "rejected": "مرفوض"
+}
+}

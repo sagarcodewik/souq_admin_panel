@@ -26,8 +26,10 @@ import DataTable from "../../../components/datatable/datatable";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useDebounce } from "use-debounce";
+import { useTranslation } from "react-i18next";
 
 const DriverPaymentsApproval = () => {
+  const { t } = useTranslation("driverPayments");
   const dispatch = useDispatch();
   const { list, total, page, pageSize, status } = useSelector(
     (state) => state.adminDriverPayments
@@ -47,18 +49,18 @@ const DriverPaymentsApproval = () => {
   const handleDownloadPDF = () => {
     const doc = new jsPDF({ orientation: "landscape" });
     doc.setFontSize(16);
-    doc.text("Driver Payments Ledger", 14, 15);
+    doc.text(t("pdf.title"), 14, 15);
 
     const tableColumns = [
-      "Ledger ID",
-      "Driver Name",
-      "Driver ID",
-      "Contact Number",
-      "Order ID",
-      "Amount",
-      "Source",
-      "Status",
-      "Date",
+      t("table.ledgerId"),
+      t("table.driverName"),
+      t("table.driverId"),
+      t("table.contact"),
+      t("table.orderId"),
+      t("table.amount"),
+      t("table.source"),
+      t("table.status"),
+      t("table.date"),
     ];
 
     const tableRows = list.map((row) => [
@@ -85,95 +87,184 @@ const DriverPaymentsApproval = () => {
 
 
 
+  // const headers = [
+  //   { key: "_id", label: "Ledger ID" },
+  //   {
+  //     key: "driver",
+  //     label: "Driver Info.",
+  //     render: (row) => (
+  //       <div className="d-flex flex-column">
+  //         <span className="fw-bold">{row.driverId?.FullName || "-"}</span>
+  //         <small className="text-muted">ID: {row.driverId?._id || "-"}</small>
+  //         <small className="text-muted">Contact: {row.driverId?.mobileNumber || "-"}</small>
+  //       </div>
+  //     ),
+  //   },
+  //   { key: "orderId", label: "Order ID" },
+  //   {
+  //     key: "amountCollected",
+  //     label: "Amount",
+  //     render: (row) => (
+  //       <strong className="text-success">₹{row.amountCollected?.toFixed(2)}</strong>
+  //     ),
+  //   },
+  //   {
+  //     key: "source",
+  //     label: "Source",
+  //     render: (row) => (
+  //       <CBadge
+  //         color={row.source === "paid_to_admin" ? "warning" : "info"}
+  //         className="text-uppercase px-3 py-2 fw-semibold"
+  //       >
+  //         {row.source.replaceAll("_", " ")}
+  //       </CBadge>
+  //     ),
+  //   },
+  //   {
+  //     key: "status",
+  //     label: "Status",
+  //     render: (row) => (
+  //       <CBadge
+  //         color={
+  //           row.status === "approved"
+  //             ? "success"
+  //             : row.status === "pending"
+  //               ? "secondary"
+  //               : "dark"
+  //         }
+  //         className="px-3 py-2 fw-semibold"
+  //       >
+  //         {row.status}
+  //       </CBadge>
+  //     ),
+  //   },
+  //   {
+  //     key: "action",
+  //     label: "Action",
+  //     render: (row) =>
+  //       row.status === "pending" && row.source === "paid_to_admin" ? (
+  //         <CTooltip content="Approve Payment">
+  //           <CButton
+  //             color="success"
+  //             size="sm"
+  //             variant="outline"
+  //             className="fw-semibold"
+  //             onClick={() => handleApprove(row._id)}
+  //             disabled={status === "loading"}
+  //           >
+  //             {status === "loading" ? (
+  //               <CSpinner size="sm" />
+  //             ) : (
+  //               <>
+  //                 <CIcon icon={cilCheckCircle} className="me-1" />
+  //                 Approve
+  //               </>
+  //             )}
+  //           </CButton>
+  //         </CTooltip>
+  //       ) : (
+  //         <span className="text-muted">—</span>
+  //       ),
+  //   },
+  // ];
   const headers = [
-    { key: "_id", label: "Ledger ID" },
-    {
-      key: "driver",
-      label: "Driver Info.",
-      render: (row) => (
-        <div className="d-flex flex-column">
-          <span className="fw-bold">{row.driverId?.FullName || "-"}</span>
-          <small className="text-muted">ID: {row.driverId?._id || "-"}</small>
-          <small className="text-muted">Contact: {row.driverId?.mobileNumber || "-"}</small>
-        </div>
-      ),
-    },
-    { key: "orderId", label: "Order ID" },
-    {
-      key: "amountCollected",
-      label: "Amount",
-      render: (row) => (
-        <strong className="text-success">₹{row.amountCollected?.toFixed(2)}</strong>
-      ),
-    },
-    {
-      key: "source",
-      label: "Source",
-      render: (row) => (
-        <CBadge
-          color={row.source === "paid_to_admin" ? "warning" : "info"}
-          className="text-uppercase px-3 py-2 fw-semibold"
-        >
-          {row.source.replaceAll("_", " ")}
-        </CBadge>
-      ),
-    },
-    {
-      key: "status",
-      label: "Status",
-      render: (row) => (
-        <CBadge
-          color={
-            row.status === "approved"
-              ? "success"
-              : row.status === "pending"
-                ? "secondary"
-                : "dark"
-          }
-          className="px-3 py-2 fw-semibold"
-        >
-          {row.status}
-        </CBadge>
-      ),
-    },
-    {
-      key: "action",
-      label: "Action",
-      render: (row) =>
-        row.status === "pending" && row.source === "paid_to_admin" ? (
-          <CTooltip content="Approve Payment">
-            <CButton
-              color="success"
-              size="sm"
-              variant="outline"
-              className="fw-semibold"
-              onClick={() => handleApprove(row._id)}
-              disabled={status === "loading"}
-            >
-              {status === "loading" ? (
-                <CSpinner size="sm" />
-              ) : (
-                <>
-                  <CIcon icon={cilCheckCircle} className="me-1" />
-                  Approve
-                </>
-              )}
-            </CButton>
-          </CTooltip>
-        ) : (
-          <span className="text-muted">—</span>
-        ),
-    },
-  ];
+  { key: "_id", label: t("table.ledgerId") },
 
+  {
+    key: "driver",
+    label: t("table.driverInfo"),
+    render: (row) => (
+      <div className="d-flex flex-column">
+        <span className="fw-bold">{row.driverId?.FullName || "-"}</span>
+        <small className="text-muted">
+          {t("table.driverId")}: {row.driverId?._id || "-"}
+        </small>
+        <small className="text-muted">
+          {t("table.contact")}: {row.driverId?.mobileNumber || "-"}
+        </small>
+      </div>
+    ),
+  },
 
+  { key: "orderId", label: t("table.orderId") },
+
+  {
+    key: "amountCollected",
+    label: t("table.amount"),
+    render: (row) => (
+      <strong className="text-success">
+        ₹{row.amountCollected?.toFixed(2)}
+      </strong>
+    ),
+  },
+
+  {
+    key: "source",
+    label: t("table.source"),
+    render: (row) => (
+      <CBadge
+        color={row.source === "paid_to_admin" ? "warning" : "info"}
+        className="text-uppercase px-3 py-2 fw-semibold"
+      >
+        {t(`source.${row.source}`)}
+      </CBadge>
+    ),
+  },
+
+  {
+    key: "status",
+    label: t("table.status"),
+    render: (row) => (
+      <CBadge
+        color={
+          row.status === "approved"
+            ? "success"
+            : row.status === "pending"
+            ? "secondary"
+            : "dark"
+        }
+        className="px-3 py-2 fw-semibold"
+      >
+        {t(`status.${row.status}`)}
+      </CBadge>
+    ),
+  },
+
+  {
+    key: "action",
+    label: t("table.action"),
+    render: (row) =>
+      row.status === "pending" && row.source === "paid_to_admin" ? (
+        <CTooltip content={t("buttons.approve")}>
+          <CButton
+            color="success"
+            size="sm"
+            variant="outline"
+            onClick={() => handleApprove(row._id)}
+            disabled={status === "loading"}
+          >
+            {status === "loading" ? (
+              <CSpinner size="sm" />
+            ) : (
+              <>
+                <CIcon icon={cilCheckCircle} className="me-1" />
+                {t("buttons.approve")}
+              </>
+            )}
+          </CButton>
+        </CTooltip>
+      ) : (
+        <span className="text-muted">—</span>
+      ),
+  },
+];
 
   return (
     <div className="fade-in">
       <CCard className="shadow-sm border-0 rounded-4">
         <CCardHeader className="bg-light d-flex justify-content-between align-items-center flex-wrap py-3 px-4 border-0">
           <h5 className="mb-0 fw-bold d-flex align-items-center gap-2">
-            Driver Payment Approvals
+           {t("title")}
           </h5>
 
           <div className="d-flex align-items-center gap-3">
@@ -184,14 +275,15 @@ const DriverPaymentsApproval = () => {
               <input
                 type="text"
                 className="form-control border-start-0"
-                placeholder="Search driver or order..."
+                placeholder={t("search")}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
             </div>
             <CButton color="primary" variant="outline" onClick={handleDownloadPDF}>
               <CIcon icon={cilCloudDownload} className="me-2" />
-              Export PDF
+             {t("buttons.exportPdf")}
+
             </CButton>
           </div>
         </CCardHeader>

@@ -14,6 +14,7 @@ import { cilChevronLeft, cilChevronRight } from '@coreui/icons'
 
 import Loader from '../loader/Loader'
 import { localDateFormat } from '../../utils'
+import { useTranslation } from 'react-i18next'
 
 /* ---------------------------------- */
 
@@ -27,6 +28,8 @@ const DataTable = ({
   isLoading = false,
 }) => {
   /* ─────────────────────────── state */
+    const { t } = useTranslation('common')
+
   const [sortKey, setSortKey] = useState('')
   const [sortDirection, setSortDirection] = useState('asc')
   const [dataList, setDataList] = useState(data)
@@ -122,7 +125,7 @@ const DataTable = ({
           ) : dataList.length === 0 ? (
             <CTableRow>
               <CTableDataCell colSpan={headers.length} className="text-center py-4">
-                No data found
+                {t('table.no_data')}
               </CTableDataCell>
             </CTableRow>
           ) : (

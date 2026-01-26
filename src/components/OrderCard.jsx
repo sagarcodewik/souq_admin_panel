@@ -14,7 +14,11 @@ import Loader from './loader/Loader.js'
 import styles from './orderCard.module.scss'
 import ProductModal from './ProductModal.js'
 import DriverDetailsModal from './DriverDetailsModal.js'
+import { useTranslation } from 'react-i18next'
+
 const OrderCard = ({ order, loading, onStatusChange, type }) => {
+    const { t } = useTranslation('Orders')
+
   const {
     _id,
     customerId,
@@ -72,14 +76,13 @@ const OrderCard = ({ order, loading, onStatusChange, type }) => {
         <p> {new Date(createdAt).toLocaleString()}</p>
       </div>
       <div className={styles.orderBody}>
-        <p>Customer: {customerId?.email || '—'}</p>
-        <p>Vendor: {vendor?.email || '—'}</p>
-        {/* <p>Driver: {vendor?.email || '—'}</p> */}
+       <p>{t('labels.customer')}: {customerId?.email || '—'}</p>
+       <p>{t('labels.vendor')}: {vendor?.email || '—'}</p>
         <div className={styles.locationSection}>
           <div className="px-3 py-2 bg-light border-bottom">
             <h6 className="mb-2 text-primary">
               <CIcon icon={cilTruck} className="me-2" />
-              Delivery Route
+             {t('labels.delivery_route')}
             </h6>
           </div>
 
@@ -93,9 +96,9 @@ const OrderCard = ({ order, loading, onStatusChange, type }) => {
               </div>
               <div className="flex-grow-1">
                 <div className="d-flex align-items-center mb-1">
-                  <strong className="text-primary me-2">Pickup Location</strong>
+                  <strong className="text-primary me-2">{t('labels.pickup')}</strong>
                   <CBadge color="primary" variant="outline" className="text-xs">
-                    From
+                   {t('labels.from')}
                   </CBadge>
                 </div>
                 <p className="text-muted mb-1 small">
@@ -130,9 +133,9 @@ const OrderCard = ({ order, loading, onStatusChange, type }) => {
               </div>
               <div className="flex-grow-1">
                 <div className="d-flex align-items-center mb-1">
-                  <strong className="text-success me-2">Delivery Address</strong>
+                  <strong className="text-success me-2">{t('labels.delivery_address')}</strong>
                   <CBadge color="success" variant="outline" className="text-xs">
-                    To
+                    {t('labels.to')}
                   </CBadge>
                 </div>
                 <p className="text-muted mb-1 small">
@@ -143,7 +146,7 @@ const OrderCard = ({ order, loading, onStatusChange, type }) => {
           </div>
         </div>
         <div className="px-3 py-2 bg-light border-bottom mb-1">
-          <h6 className="mb-2 text-primary">📦 Order Details</h6>
+          <h6 className="mb-2 text-primary">📦 {t('labels.order_details')}</h6>
         </div>
 
         {/* Inline Product Section */}
@@ -168,30 +171,36 @@ const OrderCard = ({ order, loading, onStatusChange, type }) => {
               className="mt-2"
               onClick={() => setProductModalVisible(true)}
             >
-              +{items.length - 1} more item{items.length - 1 > 1 ? 's' : ''}
+              +{items.length - 1} {t('labels.more_items')}
             </CButton>
           )}
         </div>
 
         <div className={styles.orderDetails}>
           <div className={styles.detailBlock}>
-            {subTotal !== undefined && <p>Subtotal: {subTotal} SYP</p>}
+            {subTotal !== undefined && 
+            <p>{t('labels.subtotal')}: {subTotal} {t('labels.currency')}</p>
+            }
             <span className={styles.detailBadge}>
-              {order.type === '1'
-                ? '⚡ 15 min'
+              {
+              order.type === '1'
+                ? t('filter.quick')
                 : order.type === '2'
-                  ? '🛒 Marketplace'
-                  : 'Standard'}
+                  ? t('filter.marketplace')
+                  : t('filter.all')
+                  }
             </span>
           </div>
 
           <div className={styles.detailBlock}>
-            {shippingFee !== undefined && <p>Shipping Fee: {shippingFee} SYP</p>}
+            {shippingFee !== undefined && 
+           <p>{t('labels.shipping_fee')}: {shippingFee} {t('labels.currency')}</p>
+            }
             <StatusBadge status={order.Status} />
           </div>
 
           <div className={styles.detailBlock}>
-            <p>Grand Total: {grandTotal} SYP</p>
+            <p>{t('labels.grand_total')}: {grandTotal} {t('labels.currency')}</p>
             {paymentStatus && <PaymentBadge status={paymentStatus} />}
           </div>
         </div>

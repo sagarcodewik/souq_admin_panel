@@ -1,0 +1,41 @@
+{
+  "title": "Orders Details",
+
+  "search_placeholder": "Search by order number, customer/vendor e-mail, or product name",
+
+  "filter": {
+    "all": "All",
+    "quick": "15 min",
+    "marketplace": "Marketplace"
+  },
+
+  "labels": {
+    "customer": "Customer",
+    "vendor": "Vendor",
+    "delivery_route": "Delivery Route",
+    "pickup": "Pickup Location",
+    "delivery_address": "Delivery Address",
+    "from": "From",
+    "to": "To",
+    "order_details": "Order Details",
+    "more_items": "more items",
+    "subtotal": "Subtotal",
+    "shipping_fee": "Shipping Fee",
+    "grand_total": "Grand Total",
+    "currency": "SYP"
+  },
+
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "driver-accepted": "Driver Accepted",
+    "returned": "Returned",
+    "ready": "Ready",
+    "shipped": "Shipped",
+    "in-transit": "In Transit",
+    "delivered": "Delivered"
+  },
+
+  "empty": "No orders found."
+}

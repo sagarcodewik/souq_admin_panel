@@ -1,101 +1,70 @@
 import React from 'react'
 import {
   CAvatar,
-  CBadge,
   CDropdown,
   CDropdownDivider,
-  CDropdownHeader,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
 } from '@coreui/react'
 import {
-  cilBell,
-  cilCreditCard,
-  cilCommentSquare,
-  cilEnvelopeOpen,
-  cilFile,
-  cilLockLocked,
-  cilSettings,
-  cilTask,
-  cilUser,
+  cilLanguage,
   cilAccountLogout,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import styles from './appHeaderDropDown.module.scss'
-import avatar8 from './../../assets/images/avatars/8.jpg'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLanguage } from '../../redux/slice/languageSlice'
+import { useTranslation } from 'react-i18next'
+
 const AppHeaderDropdown = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { t } = useTranslation('common')
+
+  const { lang } = useSelector((state) => state.language)
 
   const handleLogout = () => {
-    localStorage.removeItem('token') // or whatever key you're using
-    toast.success('Logged out successfully')
-    navigate('/') // Redirect to homepage or login
+    localStorage.removeItem('token')
+    toast.success(t('logout_success') || 'Logged out successfully')
+    navigate('/', { replace: true })
   }
+
+  const toggleLanguage = () => {
+    const newLang = lang === 'en' ? 'ar' : 'en'
+    dispatch(setLanguage(newLang))
+    localStorage.setItem('lang', newLang)
+  }
+
   return (
     <CDropdown variant="nav-item">
-      <CDropdownToggle placement="bottom-end" className="py-0 pe-0" caret={false}>
-        <CAvatar src="/logo.png" size="lg" className={styles.adminAvatar} />
+      <CDropdownToggle
+        placement="bottom-end"
+        className="py-0 pe-0"
+        caret={false}
+      >
+        <CAvatar
+          src="/logo.png"
+          size="lg"
+          className={styles.adminAvatar}
+        />
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        {/* <CDropdownHeader className="bg-body-secondary fw-semibold mb-2">Account</CDropdownHeader>
-        <CDropdownItem href="#">
-          <CIcon icon={cilBell} className="me-2" />
-          Updates
-          <CBadge color="info" className="ms-2">
-            42
-          </CBadge>
+        <CDropdownItem onClick={toggleLanguage}>
+          <CIcon icon={cilLanguage} className="me-2" />
+          {lang === 'en'
+            ? 'Switch to Arabic'
+            : 'التبديل إلى الإنجليزية'}
         </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilEnvelopeOpen} className="me-2" />
-          Messages
-          <CBadge color="success" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilTask} className="me-2" />
-          Tasks
-          <CBadge color="danger" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilCommentSquare} className="me-2" />
-          Comments
-          <CBadge color="warning" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownHeader className="bg-body-secondary fw-semibold my-2">Settings</CDropdownHeader>
-        <CDropdownItem href="#">
-          <CIcon icon={cilUser} className="me-2" />
-          Profile
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilSettings} className="me-2" />
-          Settings
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilCreditCard} className="me-2" />
-          Payments
-          <CBadge color="secondary" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilFile} className="me-2" />
-          Projects
-          <CBadge color="primary" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem> */}
-        {/* <CDropdownDivider /> */}
-        <CDropdownItem onClick={handleLogout} style={{ cursor: 'pointer' }}>
+        <CDropdownDivider />
+        <CDropdownItem
+          onClick={handleLogout}
+          style={{ cursor: 'pointer' }}
+        >
           <CIcon icon={cilAccountLogout} className="me-2" />
-          Logout
+        {lang === 'en' ? 'Logout' : 'تسجيل الخروج'}
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>
@@ -103,3 +72,4 @@ const AppHeaderDropdown = () => {
 }
 
 export default AppHeaderDropdown
+

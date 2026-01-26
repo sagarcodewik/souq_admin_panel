@@ -1,0 +1,32 @@
+{
+  "title": "Driver Payment Approvals",
+  "search": "Search driver or order...",
+  "buttons": {
+    "exportPdf": "Export PDF",
+    "approve": "Approve"
+  },
+  "pdf": {
+    "title": "Driver Payments Ledger"
+  },
+  "table": {
+    "ledgerId": "Ledger ID",
+    "driverInfo": "Driver Info",
+    "driverName": "Driver Name",
+    "driverId": "Driver ID",
+    "contact": "Contact",
+    "orderId": "Order ID",
+    "amount": "Amount",
+    "source": "Source",
+    "status": "Status",
+    "action": "Action",
+    "date": "Date"
+  },
+  "status": {
+    "approved": "Approved",
+    "pending": "Pending"
+  },
+  "source": {
+    "paid_to_admin": "Paid to Admin",
+    "paid_to_driver": "Paid to Driver"
+  }
+}

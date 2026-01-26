@@ -101,6 +101,7 @@ const ManageVendor = () => {
     setVisible,
     onToggleDelete,
     onToggleStatus,
+    t,
   )
 
   return (

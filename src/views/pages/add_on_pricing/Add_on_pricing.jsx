@@ -1,4 +1,4 @@
-// src/views/pages/addonPricing/Add_on_pricing.js
+
 import React, { useEffect, useState } from 'react'
 import {
   CCard,
@@ -18,18 +18,31 @@ import DataTable from '../../../components/datatable/datatable'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import style from './add_on_pricing.module.scss'
+import { useTranslation } from 'react-i18next'
 
-// ✅ Yup schema
-const addonSchema = Yup.object().shape({
-  price: Yup.number()
-    .typeError('Price must be a number')
-    .required('Price is required')
-    .min(0, 'Price cannot be negative'),
-  days: Yup.number()
-    .nullable()
-    .min(0, 'Days cannot be negative')
-    .typeError('Days must be a number'),
-})
+// const addonSchema = Yup.object().shape({
+//   price: Yup.number()
+//     .typeError('Price must be a number')
+//     .required('Price is required')
+//     .min(0, 'Price cannot be negative'),
+//   days: Yup.number()
+//     .nullable()
+//     .min(0, 'Days cannot be negative')
+//     .typeError('Days must be a number'),
+// })
+const addonSchema = (t) =>
+  Yup.object().shape({
+    price: Yup.number()
+      .typeError(t('validation.price_number'))
+      .required(t('validation.price_required'))
+      .min(0, t('validation.price_min')),
+
+    days: Yup.number()
+      .nullable()
+      .typeError(t('validation.days_number'))
+      .min(0, t('validation.days_min')),
+  })
+
 
 const formatPricingType = (value) => {
   if (!value) return '-'
@@ -40,6 +53,8 @@ const formatPricingType = (value) => {
 }
 
 const Add_on_pricing = () => {
+  const { t } = useTranslation('addonPricing')
+
   const dispatch = useDispatch()
   const { addonPricing, status } = useSelector((state) => state.addonPricing)
 
@@ -61,7 +76,7 @@ const Add_on_pricing = () => {
       await dispatch(updateAddonPricing(values)).unwrap()
       setVisibleModal(false)
       setEditItem(null)
-      dispatch(fetchAddonPricing()) // refresh list
+      dispatch(fetchAddonPricing()) 
     } catch (err) {
       console.error(err)
     } finally {
@@ -69,31 +84,57 @@ const Add_on_pricing = () => {
     }
   }
 
+  // const headers = [
+  //   { key: 'addonName', label: 'Addon', sortable: true },
+  //   { key: 'price', label: 'Price', sortable: true },
+  //   {
+  //     key: 'days',
+  //     label: 'Days',
+  //     sortable: true,
+  //     render: (row) => (row.days !== null && row.days !== undefined ? row.days : '-'),
+  //   },
+  //   {
+  //     key: 'pricingType',
+  //     label: 'Pricing Type',
+  //     sortable: true,
+  //     render: (row) => formatPricingType(row.pricingType),
+  //   },
+  //   {
+  //     key: 'actions',
+  //     label: 'Actions',
+  //     render: (row) => (
+  //       <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
+  //         <CIcon icon={cilPencil} /> Edit
+  //       </CButton>
+  //     ),
+  //   },
+  // ]
   const headers = [
-    { key: 'addonName', label: 'Addon', sortable: true },
-    { key: 'price', label: 'Price', sortable: true },
-    {
-      key: 'days',
-      label: 'Days',
-      sortable: true,
-      render: (row) => (row.days !== null && row.days !== undefined ? row.days : '-'),
-    },
-    {
-      key: 'pricingType',
-      label: 'Pricing Type',
-      sortable: true,
-      render: (row) => formatPricingType(row.pricingType),
-    },
-    {
-      key: 'actions',
-      label: 'Actions',
-      render: (row) => (
-        <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
-          <CIcon icon={cilPencil} /> Edit
-        </CButton>
-      ),
-    },
-  ]
+  { key: 'addonName', label: t('table.addon'), sortable: true },
+  { key: 'price', label: t('table.price'), sortable: true },
+  {
+    key: 'days',
+    label: t('table.days'),
+    sortable: true,
+    render: (row) => (row.days ?? '-'),
+  },
+  {
+    key: 'pricingType',
+    label: t('table.pricingType'),
+    sortable: true,
+    render: (row) => formatPricingType(row.pricingType, t),
+  },
+  {
+    key: 'actions',
+    label: t('table.actions'),
+    render: (row) => (
+      <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
+        <CIcon icon={cilPencil} /> {t('buttons.edit')}
+      </CButton>
+    ),
+  },
+]
+
 
   const filteredData = addonPricing.filter((a) =>
     a.addonName.toLowerCase().includes(searchText.toLowerCase()),
@@ -106,7 +147,7 @@ const Add_on_pricing = () => {
     <div className={style.add_on_pricing}>
       <CCard className="mb-4">
         <CCardHeader className="d-flex justify-content-between align-items-center flex-wrap gap-2">
-          <h5 className="mb-0">Addon Pricing</h5>
+          <h5 className="mb-0">{t('title')}</h5>
           <div className="input-group" style={{ width: '300px' }}>
             <span className="input-group-text bg-white">
               <CIcon icon={cilSearch} />
@@ -114,7 +155,7 @@ const Add_on_pricing = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search addon..."
+              placeholder={t('search')}
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
@@ -136,7 +177,7 @@ const Add_on_pricing = () => {
 
       {/* Update Modal */}
       <CModal visible={visibleModal} onClose={() => setVisibleModal(false)}>
-        <CModalHeader closeButton>Update Addon Pricing</CModalHeader>
+        <CModalHeader closeButton>  {t('modal.title')}</CModalHeader>
         {editItem && (
           <Formik
             initialValues={{
@@ -152,7 +193,7 @@ const Add_on_pricing = () => {
               <Form>
                 <CModalBody>
                   <div className="mb-3">
-                    <label className="form-label">Addon</label>
+                    <label className="form-label">{t('form.addon')}</label>
                     <input
                       type="text"
                       value={editItem.addonName}
@@ -162,7 +203,7 @@ const Add_on_pricing = () => {
                   </div>
 
                   <div className="mb-3">
-                    <label className="form-label">Price</label>
+                    <label className="form-label">{t('form.price')}</label>
                     <Field
                       name="price"
                       type="number"
@@ -176,7 +217,7 @@ const Add_on_pricing = () => {
                   {/* Days editable only if not in restricted addons */}
                   {!noDaysAddons.includes(editItem.addonName) && (
                     <div className="mb-3">
-                      <label className="form-label">Days</label>
+                      <label className="form-label">{t('form.days')}</label>
                       <Field name="days" type="number" min="0" className="form-control" />
                       <ErrorMessage
                         name="days"
@@ -189,7 +230,7 @@ const Add_on_pricing = () => {
                   {/* Pricing Type: shown only if not in noPricingTypeAddons */}
                   {!noPricingTypeAddons.includes(editItem.addonName) && (
                     <div className="mb-3">
-                      <label className="form-label">Pricing Type</label>
+                      <label className="form-label">{t('form.pricingType')}</label>
                       <input
                         type="text"
                         value={formatPricingType(editItem.pricingType)}
@@ -202,10 +243,10 @@ const Add_on_pricing = () => {
 
                 <CModalFooter>
                   <CButton color="secondary" onClick={() => setVisibleModal(false)}>
-                    Cancel
+                  {t('buttons.cancel')}
                   </CButton>
                   <CButton type="submit" color="primary" disabled={isSubmitting}>
-                    {isSubmitting ? 'Updating...' : 'Update'}
+                   {isSubmitting ? t('buttons.updating') : t('buttons.update')}
                   </CButton>
                 </CModalFooter>
               </Form>

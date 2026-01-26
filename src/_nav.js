@@ -14,166 +14,14 @@ import {
   cilMoney,
   cilTag,
   cilDollar,
-  cilWallet,
   cilCheckCircle,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem } from '@coreui/react'
 
-// const _nav = [
-//   {
-//     component: CNavItem,
-//     name: 'Dashboard',
-//     to: '/dashboard',
-//     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-//   },
-//    {
-//     component: CNavItem,
-//     name: 'Sub Admin',
-//     to: '/sub-admin',
-//     icon: <CIcon icon={cilCheckCircle} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavGroup,
-//     name: 'Vendors',
-//     icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
-//     items: [
-//       {
-//         component: CNavItem,
-//         name: 'Manage Vendors',
-//         to: '/vendors/manage',
-//       },
-//       {
-//         component: CNavItem,
-//         name: 'Vendor Requests',
-//         to: '/vendors/requests',
-//       },
-//     ],
-//   },
-//   {
-//     component: CNavGroup,
-//     name: 'Drivers',
-//     icon: <CIcon icon={cilTruck} customClassName="nav-icon" />,
-//     items: [
-//       {
-//         component: CNavItem,
-//         name: 'Manage Drivers',
-//         to: '/drivers/manage',
-//       },
-//       {
-//         component: CNavItem,
-//         name: 'Driver Requests',
-//         to: '/drivers/requests',
-//       },
-//     ],
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Active Orders',
-//     to: '/orders',
-//     icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Failed Orders',
-//     to: '/failed-orders',
-//     icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Stores',
-//     to: '/stores',
-//     icon: <CIcon icon={cilBuilding} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Category',
-//     to: '/category',
-//     icon: <CIcon icon={cilFolderOpen} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Advertisements',
-//     to: '/advertisements',
-//     icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
-//   },
-
-//   {
-//     component: CNavItem,
-//     name: 'Promotions',
-//     to: '/promotions',
-//     icon: <CIcon icon={cilTags} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Reviews',
-//     to: '/reviews',
-//     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavGroup,
-//     name: 'Chats',
-//     icon: <CIcon icon={cilChatBubble} customClassName="nav-icon" />,
-//     items: [
-//       {
-//         component: CNavItem,
-//         name: 'Customer Chats',
-//         to: '/customer-chats',
-//       },
-//       {
-//         component: CNavItem,
-//         name: 'Driver Chats',
-//         to: '/driver-chats',
-//       },
-//       // {
-//       //   component: CNavItem,
-//       //   name: 'Order Chats',
-//       //   to: '/order-chats',
-//       // },
-//       {
-//         component: CNavItem,
-//         name: 'Vendor Chats',
-//         to: '/vendor-chats',
-//       },
-//     ],
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Driver Commission',
-//     to: '/driver-commission',
-//     icon: <CIcon icon={cilDollar} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Add On Pricing',
-//     to: '/add-on-pricing',
-//     icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Promotion Pricing',
-//     to: '/promotion-pricing',
-//     icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Finances',
-//     to: '/finances',
-//     icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
-//   },
-//   {
-//     component: CNavItem,
-//     name: 'Driver Payments',
-//     to: '/driver-payments',
-//     icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
-//   },
-// ]
-
-// export default _nav
-
-const _nav = [
+const  getNav  = (t) => [
   {
     component: CNavItem,
-    name: 'Dashboard',
+    name: t('nav.dashboard'),
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
     permission: 'dashboard',
@@ -189,19 +37,19 @@ const _nav = [
 
   {
     component: CNavGroup,
-    name: 'Vendors',
+    name: t('nav.vendors'),
     icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
     permission: 'vendors_view',
     items: [
       {
         component: CNavItem,
-        name: 'Manage Vendors',
+        name: t('nav.manage_vendors'),
         to: '/vendors/manage',
         permission: 'vendors_manage',
       },
       {
         component: CNavItem,
-        name: 'Vendor Requests',
+        name: t('nav.vendor_requests'),
         to: '/vendors/requests',
         permission: 'vendors_view',
       },
@@ -210,19 +58,19 @@ const _nav = [
 
   {
     component: CNavGroup,
-    name: 'Drivers',
+    name: t('nav.drivers'),
     icon: <CIcon icon={cilTruck} customClassName="nav-icon" />,
     permission: 'drivers_view',
     items: [
       {
         component: CNavItem,
-        name: 'Manage Drivers',
+        name: t('nav.manage_drivers'),
         to: '/drivers/manage',
         permission: 'drivers_manage',
       },
       {
         component: CNavItem,
-        name: 'Driver Requests',
+        name: t('nav.driver_requests'),
         to: '/drivers/requests',
         permission: 'drivers_view',
       },
@@ -231,15 +79,20 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Active Orders',
+    name: t('nav.active_orders'),
     to: '/orders',
     icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
     permission: 'orders_view',
   },
-
   {
     component: CNavItem,
-    name: 'Stores',
+    name: t('nav.failed_orders'),
+    to: '/failed-orders',
+    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: t('nav.stores'),
     to: '/stores',
     icon: <CIcon icon={cilBuilding} customClassName="nav-icon" />,
     permission: 'stores',
@@ -247,7 +100,7 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Category',
+    name: t('nav.category'),
     to: '/category',
     icon: <CIcon icon={cilFolderOpen} customClassName="nav-icon" />,
     permission: 'category',
@@ -255,15 +108,14 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Advertisements',
+    name: t('nav.advertisements'),
     to: '/advertisements',
     icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
     permission: 'ads',
   },
-
   {
     component: CNavItem,
-    name: 'Promotions',
+    name: t('nav.promotions'),
     to: '/promotions',
     icon: <CIcon icon={cilTags} customClassName="nav-icon" />,
     permission: 'promotions',
@@ -271,7 +123,7 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Reviews',
+    name: t('nav.reviews'),
     to: '/reviews',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
     permission: 'reviews',
@@ -279,25 +131,25 @@ const _nav = [
 
   {
     component: CNavGroup,
-    name: 'Chats',
+    name: t('nav.chats'),
     icon: <CIcon icon={cilChatBubble} customClassName="nav-icon" />,
     permission: 'chats',
     items: [
       {
         component: CNavItem,
-        name: 'Customer Chats',
+        name: t('nav.customer_chats'),
         to: '/customer-chats',
         permission: 'chats',
       },
       {
         component: CNavItem,
-        name: 'Driver Chats',
+        name: t('nav.driver_chats'),
         to: '/driver-chats',
         permission: 'chats',
       },
       {
         component: CNavItem,
-        name: 'Vendor Chats',
+        name: t('nav.vendor_chats'),
         to: '/vendor-chats',
         permission: 'chats',
       },
@@ -306,7 +158,7 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Driver Commission',
+    name: t('nav.driver_commission'),
     to: '/driver-commission',
     icon: <CIcon icon={cilDollar} customClassName="nav-icon" />,
     permission: 'driver_commission',
@@ -314,7 +166,7 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Add On Pricing',
+    name: t('nav.add_on_pricing'),
     to: '/add-on-pricing',
     icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
     permission: 'addon_pricing',
@@ -322,7 +174,7 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Promotion Pricing',
+    name: t('nav.promotion_pricing'),
     to: '/promotion-pricing',
     icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
     permission: 'promotion_pricing',
@@ -330,7 +182,7 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Finances',
+    name: t('nav.finances'),
     to: '/finances',
     icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
     permission: 'finances',
@@ -338,11 +190,11 @@ const _nav = [
 
   {
     component: CNavItem,
-    name: 'Driver Payments',
+    name: t('nav.driver_payments'),
     to: '/driver-payments',
     icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
     permission: 'driver_payments',
   },
 ]
 
-export default _nav
+export default getNav

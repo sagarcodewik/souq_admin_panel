@@ -1,0 +1,49 @@
+{
+  "title": "Drivers",
+  "manage_title": "Manage Drivers",
+
+  "search_placeholder": "Search by email and name...",
+
+  "table": {
+    "email": "Email",
+    "name": "Name",
+    "status": "Status",
+    "deleted": "Deleted",
+    "actions": "Actions"
+  },
+
+  "actions": {
+    "view_driver": "View Driver Details",
+    "activate_driver": "Activate Driver",
+    "deactivate_driver": "Deactivate Driver",
+    "approve_driver": "Approve Driver",
+    "reject_driver": "Reject Driver"
+  },
+
+  "active_delivering": {
+    "title": "Active Delivering Drivers",
+    "no_active": "No active delivering drivers at the moment",
+    "waiting": "Waiting for real-time connection...",
+    "trying": "Trying to connect to server..."
+  },
+
+  "debug": {
+    "title": "Debug Information",
+    "api_key": "API Key Present",
+    "total_drivers": "Total Drivers",
+    "drivers_with_location": "Drivers with Location",
+    "socket_connected": "Socket Connected",
+    "base_url": "Base URL"
+  },
+
+  "modal": {
+    "title": "Driver Details",
+    "name": "Name",
+    "email": "Email",
+    "status": "Status",
+    "vehicle_type": "Vehicle Type",
+    "currently_delivering": "Currently Delivering",
+    "location": "Location",
+    "close": "Close"
+  }
+}

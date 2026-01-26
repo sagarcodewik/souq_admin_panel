@@ -1,0 +1,50 @@
+{
+  "title": "العروض الترويجية",
+
+  "search": {
+    "title": "البحث حسب العنوان...",
+    "type": "البحث حسب النوع...",
+    "code": "البحث حسب كود العرض...",
+    "status": "الحالة",
+    "all": "الكل",
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+
+  "table": {
+    "title": "العنوان",
+    "description": "الوصف",
+    "type": "النوع",
+    "promotion_code": "كود العرض",
+    "discount": "الخصم",
+    "products": "المنتجات",
+    "start_date": "تاريخ البداية",
+    "end_date": "تاريخ النهاية",
+    "active": "نشط",
+    "deleted": "محذوف",
+    "actions": "الإجراءات",
+    "created":"مخلوق"
+  },
+
+  "modal": {
+    "details_title": "تفاصيل العرض",
+    "product_name": "اسم المنتج",
+    "price": "السعر (ل.س)",
+    "category": "الفئة",
+    "yes": "نعم",
+    "no": "لا",
+    "close": "إغلاق"
+  },
+
+  "confirm": {
+    "delete_title": "حذف العرض",
+    "restore_title": "استعادة العرض",
+    "activate_title": "تفعيل العرض",
+    "deactivate_title": "إيقاف العرض",
+    "delete_msg": "هل أنت متأكد من حذف هذا العرض؟",
+    "restore_msg": "هل تريد استعادة هذا العرض؟",
+    "activate_msg": "هل تريد تفعيل هذا العرض؟",
+    "deactivate_msg": "هل تريد إيقاف هذا العرض؟",
+    "confirm": "تأكيد"
+  }
+}

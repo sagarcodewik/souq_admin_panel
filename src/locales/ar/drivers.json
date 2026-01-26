@@ -1,0 +1,49 @@
+{
+  "title": "السائقون",
+  "manage_title": "إدارة السائقين",
+
+  "search_placeholder": "البحث بالبريد الإلكتروني أو الاسم...",
+
+  "table": {
+    "email": "البريد الإلكتروني",
+    "name": "الاسم",
+    "status": "الحالة",
+    "deleted": "محذوف",
+    "actions": "الإجراءات"
+  },
+
+  "actions": {
+    "view_driver": "عرض تفاصيل السائق",
+    "activate_driver": "تفعيل السائق",
+    "deactivate_driver": "إيقاف السائق",
+    "approve_driver": "قبول السائق",
+    "reject_driver": "رفض السائق"
+  },
+
+  "active_delivering": {
+    "title": "السائقون النشطون في التوصيل",
+    "no_active": "لا يوجد سائقون نشطون حالياً",
+    "waiting": "بانتظار الاتصال في الوقت الحقيقي...",
+    "trying": "جاري محاولة الاتصال بالخادم..."
+  },
+
+  "debug": {
+    "title": "معلومات التصحيح",
+    "api_key": "مفتاح API متوفر",
+    "total_drivers": "إجمالي السائقين",
+    "drivers_with_location": "السائقون مع الموقع",
+    "socket_connected": "الاتصال بالخادم",
+    "base_url": "رابط الخادم"
+  },
+
+  "modal": {
+    "title": "تفاصيل السائق",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "status": "الحالة",
+    "vehicle_type": "نوع المركبة",
+    "currently_delivering": "يُوصل حالياً",
+    "location": "الموقع",
+    "close": "إغلاق"
+  }
+}

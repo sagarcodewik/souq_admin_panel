@@ -1,0 +1,54 @@
+{
+  "title": "Dashboard Overview",
+  "subtitle": "Monitor your ecommerce platform performance and key metrics",
+
+  "kpi": {
+    "vendor_requests": "Vendor Requests",
+    "total_vendors": "Total Vendors",
+    "total_customers": "Total Customers",
+    "driver_requests": "Driver Requests",
+    "active_orders": "Active Orders",
+    "total_stores": "Total Stores",
+
+    "new_requests": "New requests",
+    "pending_approval": "Pending approval",
+    "in_progress": "In progress",
+    "this_month": "this month"
+  },
+
+  "sales": {
+    "title": "Sales Overview",
+    "no_data": "No sales data available",
+    "last_7_days": "Last 7 days",
+    "last_30_days": "Last 30 days",
+    "last_90_days": "Last 90 days"
+  },
+
+  "performance": {
+    "title": "Performance Metrics",
+    "avg_order_value": "Avg Order Value",
+    "return_rate": "Return Rate",
+    "customer_satisfaction": "Customer Satisfaction"
+  },
+
+  "orders": {
+    "recent": "Recent Orders",
+    "view_all": "View All",
+    "order_id": "Order ID",
+    "customer": "Customer",
+    "amount": "Amount (SYP)",
+    "status": "Status",
+    "date": "Date"
+  },
+
+  "charts": {
+    "sales_by_category": "Sales by Category",
+    "distribution": "Distribution"
+  },
+
+  "top": {
+    "vendors": "Top Vendors",
+    "customers": "Top Customers",
+    "orders": "orders"
+  }
+}

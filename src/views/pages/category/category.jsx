@@ -107,24 +107,31 @@ const Category = () => {
   }
 
   const headers = [
-    { key: 'category', label: 'Category', sortable: true },
+    { key: 'category', label: t('table.category'), sortable: true },
     {
       key: 'subCategory',
-      label: 'Subcategories',
-      sortable: false,
+      label: t('table.subcategories'),
       render: (row) => row.subCategory.join(', '),
     },
-    { key: 'color', label: 'Color', sortable: false, render: (row) => (row.color ? 'Yes' : 'No') },
-    { key: 'commission', label: 'Commission (%)', sortable: true },
+    {
+      key: 'color',
+      label: t('table.color'),
+      render: (row) => (row.color ? t('table.yes') : t('table.no')),
+    },
+    {
+      key: 'commission',
+      label: t('table.commission'),
+      sortable: true,
+    },
     {
       key: 'actions',
-      label: 'Actions',
-      sortable: false,
+      label: t('table.actions'),
       render: (row) => (
         <>
           <CButton size="sm" color="info" className="me-2" onClick={() => handleEdit(row)}>
             <CIcon icon={cilPencil} size="sm" />
           </CButton>
+
           <CButton
             size="sm"
             color="danger"
@@ -142,7 +149,7 @@ const Category = () => {
     <>
       <CCard className="mb-4">
         <CCardHeader className="d-flex justify-content-between align-items-center flex-wrap gap-2">
-          <h5 className="mb-0">Categories</h5>
+          <h5 className="mb-0">{t('title')}</h5>
           <div className="d-flex align-items-center gap-3">
             <div className="input-group" style={{ width: '300px' }}>
               <span className="input-group-text bg-white">
@@ -151,27 +158,26 @@ const Category = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Search category..."
+                placeholder={t('search_placeholder')}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
             </div>
             {/* <CButton color="primary" onClick={() => setVisibleModal(true)}> */}
             <CButton
-  color="primary"
-  onClick={() => {
-    setEditId(null)
-    setFormData({
-      category: '',
-      subCategory: '',
-      color: false,
-      commission: 0,
-    })
-    setVisibleModal(true)
-  }}
->
-
-              <CIcon icon={cilPlus} className="me-2" /> Add Category
+              color="primary"
+              onClick={() => {
+                setEditId(null)
+                setFormData({
+                  category: '',
+                  subCategory: '',
+                  color: false,
+                  commission: 0,
+                })
+                setVisibleModal(true)
+              }}
+            >
+              <CIcon icon={cilPlus} className="me-2" /> {t('add')}
             </CButton>
           </div>
         </CCardHeader>
@@ -189,27 +195,24 @@ const Category = () => {
         </CCardBody>
       </CCard>
 
-      {/* Add/Edit Modal */}
-      {/* <CModal visible={visibleModal} onClose={() => setVisibleModal(false)}> */}
       <CModal
-  visible={visibleModal}
-  onClose={() => {
-    setVisibleModal(false)
-    setEditId(null)
-    setFormData({
-      category: '',
-      subCategory: '',
-      color: false,
-      commission: 0,
-    })
-  }}
->
-
+        visible={visibleModal}
+        onClose={() => {
+          setVisibleModal(false)
+          setEditId(null)
+          setFormData({
+            category: '',
+            subCategory: '',
+            color: false,
+            commission: 0,
+          })
+        }}
+      >
         <CModalHeader closeButton>{editId ? 'Edit Category' : 'Add Category'}</CModalHeader>
         <CModalBody>
           <CForm onSubmit={handleSubmit}>
             <CFormInput
-              label="Category"
+              label={t('form.category')}
               name="category"
               value={formData.category}
               onChange={handleInputChange}
@@ -217,7 +220,7 @@ const Category = () => {
               className="mb-3"
             />
             <CFormInput
-              label="Subcategories (comma separated)"
+              label={t('form.subcategories')}
               name="subCategory"
               value={formData.subCategory}
               onChange={handleInputChange}
@@ -227,14 +230,14 @@ const Category = () => {
             <CFormCheck
               type="checkbox"
               name="color"
-              label="Color"
+              label={t('form.color')}
               checked={formData.color}
               onChange={handleInputChange}
               className="mb-3"
             />
             <CFormInput
               type="number"
-              label="Commission (%)"
+              label={t('form.commission')}
               name="commission"
               value={formData.commission}
               onChange={handleInputChange}
@@ -247,10 +250,10 @@ const Category = () => {
         </CModalBody>
         <CModalFooter>
           <CButton color="secondary" onClick={() => setVisibleModal(false)}>
-            Cancel
+            {t('cancel')}
           </CButton>
           <CButton color="primary" onClick={handleSubmit}>
-            {editId ? 'Update' : 'Create'}
+            {editId ? t('update') : t('create')}
           </CButton>
         </CModalFooter>
       </CModal>
@@ -260,14 +263,14 @@ const Category = () => {
         visible={confirmDelete.show}
         onClose={() => setConfirmDelete({ show: false, id: null })}
       >
-        <CModalHeader closeButton>Confirm Delete</CModalHeader>
-        <CModalBody>Are you sure you want to delete this category?</CModalBody>
+        <CModalHeader closeButton>{t('delete')}</CModalHeader>
+        <CModalBody>{t('confirm_delete')}</CModalBody>
         <CModalFooter>
           <CButton color="secondary" onClick={() => setConfirmDelete({ show: false, id: null })}>
-            Cancel
+            {t('cancel')}
           </CButton>
           <CButton color="danger" onClick={handleDelete}>
-            Delete
+            {t('delete')}
           </CButton>
         </CModalFooter>
       </CModal>

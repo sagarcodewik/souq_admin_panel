@@ -8,8 +8,10 @@ import { cilUser, cilChatBubble, cilPeople, cilEnvelopeClosed } from '@coreui/ic
 import { ROLE_NAMES } from '../../../utils/constants'
 import ChatBox from '../../../components/ChatBox'
 import styles from './chat.module.scss'
+import { useTranslation } from 'react-i18next'
 
 const Chats = () => {
+  const { t } = useTranslation('vendorChats')
   const dispatch = useDispatch()
   const [userId, setUserId] = useState(null)
   const [selectedUser, setSelectedUser] = useState(null)
@@ -36,12 +38,19 @@ const Chats = () => {
   }, [dispatch])
 
   const getRoleBadge = (role) => {
+    // const roleConfig = {
+    //   admin: { color: 'danger', text: 'Admin' },
+    //   vendor: { color: 'primary', text: 'Vendor' },
+    //   customer: { color: 'success', text: 'Customer' },
+    //   support: { color: 'info', text: 'Support' },
+    //   moderator: { color: 'warning', text: 'Moderator' },
+    // }
     const roleConfig = {
-      admin: { color: 'danger', text: 'Admin' },
-      vendor: { color: 'primary', text: 'Vendor' },
-      customer: { color: 'success', text: 'Customer' },
-      support: { color: 'info', text: 'Support' },
-      moderator: { color: 'warning', text: 'Moderator' },
+      admin: { color: 'danger', text: t('roles.admin') },
+      vendor: { color: 'primary', text: t('roles.vendor') },
+      customer: { color: 'success', text: t('roles.customer') },
+      support: { color: 'info', text: t('roles.support') },
+      moderator: { color: 'warning', text: t('roles.moderator') },
     }
 
     const config = roleConfig[role] || { color: 'secondary', text: ROLE_NAMES[role] || 'Unknown' }
@@ -71,9 +80,10 @@ const Chats = () => {
             <div className="d-flex align-items-center">
               <CIcon icon={cilChatBubble} className="me-2" size="lg" />
               <div>
-                <h5 className="text-white mb-0">Messages</h5>
+                <h5 className="text-white mb-0">{t('messages.title')}</h5>
                 <small className="text-white-75">
-                  {chatUsers.length} conversation{chatUsers.length !== 1 ? 's' : ''}
+                  {/* {chatUsers.length} conversation{chatUsers.length !== 1 ? 's' : ''} */}
+                   {t('messages.count', { count: chatUsers.length })}
                 </small>
               </div>
             </div>
@@ -83,11 +93,11 @@ const Chats = () => {
             {loading ? (
               <div className={styles.loadingState}>
                 <CSpinner color="primary" />
-                <p className="text-muted mt-2">Loading conversations...</p>
+                <p className="text-muted mt-2">{t('states.loading')}</p>
               </div>
             ) : error ? (
               <CAlert color="danger" className="m-3">
-                <h6 className="alert-heading">Error loading chats</h6>
+                <h6 className="alert-heading">{t('states.errorTitle')}</h6>
                 {error}
               </CAlert>
             ) : chatUsers.length > 0 ? (
@@ -120,8 +130,8 @@ const Chats = () => {
                         <h6 className={styles.userName}>
                           {' '}
                           {user.email === 'marketadmin@yopmail.com'
-                            ? 'Admin'
-                            : user.name || 'Unknown User'}
+                            ? t('roles.admin')
+                            : user.name || t('common.unknownUser')}
                         </h6>
                         <div className={styles.userMeta}>
                           <small className={styles.userEmail}>
@@ -143,9 +153,9 @@ const Chats = () => {
             ) : (
               <div className={styles.emptyState}>
                 <CIcon icon={cilPeople} size="3xl" className="text-muted mb-3" />
-                <h6 className="text-muted mb-2">No conversations yet</h6>
+                <h6 className="text-muted mb-2">{t('empty.leftTitle')}</h6>
                 <p className="text-muted small mb-0">
-                  Start chatting with customers, Vendor and Delivery Agents
+                  {t('empty.leftDesc')}
                 </p>
               </div>
             )}
@@ -179,8 +189,8 @@ const Chats = () => {
                     <h6 className={styles.userName}>
                       {' '}
                       {selectedUser.email === 'marketadmin@yopmail.com'
-                        ? 'Admin'
-                        : selectedUser.name || 'Unknown User'}
+                        ? t('roles.admin')
+                        : selectedUser.name || t('common.unknownUser')}
                     </h6>
                     <div className="d-flex align-items-center gap-2">
                       <small className="text-muted">{selectedUser.email}</small>
@@ -201,8 +211,8 @@ const Chats = () => {
             <CCardBody className={styles.chatArea}>
               <div className={styles.emptyMessage}>
                 <CIcon icon={cilChatBubble} size="4xl" className="text-muted mb-4" />
-                <h4 className="text-muted mb-3">Select a conversation</h4>
-                <p className="text-muted">Choose a contact from the sidebar to start messaging</p>
+                <h4 className="text-muted mb-3">{t('empty.rightTitle')}</h4>
+                <p className="text-muted">{t('empty.rightDesc')}</p>
               </div>
             </CCardBody>
           )}

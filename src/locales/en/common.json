@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+
+    "vendors": "Vendors",
+    "manage_vendors": "Manage Vendors",
+    "vendor_requests": "Vendor Requests",
+
+    "drivers": "Drivers",
+    "manage_drivers": "Manage Drivers",
+    "driver_requests": "Driver Requests",
+
+    "active_orders": "Active Orders",
+    "failed_orders": "Failed Orders",
+
+    "stores": "Stores",
+    "category": "Category",
+    "advertisements": "Advertisements",
+    "promotions": "Promotions",
+    "reviews": "Reviews",
+
+    "chats": "Chats",
+    "customer_chats": "Customer Chats",
+    "driver_chats": "Driver Chats",
+    "vendor_chats": "Vendor Chats",
+
+    "driver_commission": "Driver Commission",
+    "add_on_pricing": "Add On Pricing",
+    "promotion_pricing": "Promotion Pricing",
+
+    "finances": "Finances",
+    "driver_payments": "Driver Payments",
+
+    "logout": "Logout",
+    "switch_to_arabic": "Switch to Arabic",
+    "switch_to_english": "Switch to English",
+    "footer_rights": "Dual_App Marketplace. All rights reserved."
+  },
+   "table": {
+    "no_data": "No data found",
+    "actions": "Actions"
+  }
+}

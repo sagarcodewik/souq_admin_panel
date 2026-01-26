@@ -1,0 +1,30 @@
+{
+  "title": "Products with Reviews",
+
+  "search_placeholder": "Search product...",
+  "sort_label": "Sort:",
+
+  "sort": {
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "highrating": "High Rating",
+    "lowrating": "Low Rating"
+  },
+
+  "no_products": "No products found.",
+  "loading_error": "Something went wrong.",
+
+  "rating_text": "Rating",
+  "reviews_count": "{{count}} reviews",
+
+  "tabs": {
+    "product": "Product Reviews",
+    "driver": "Driver Reviews"
+  },
+
+  "no_product_reviews": "No product reviews found.",
+  "no_driver_reviews": "No driver reviews found.",
+
+  "driver_label": "Driver",
+  "vendor_reply": "Vendor Reply"
+}

@@ -1,0 +1,32 @@
+{
+  "messages": {
+    "title": "الرسائل",
+    "count": "{{count}} محادثة",
+    "count_plural": "{{count}} محادثات"
+  },
+
+  "roles": {
+    "admin": "مشرف",
+    "driver": "سائق",
+    "vendor": "بائع",
+    "customer": "عميل",
+    "support": "الدعم",
+    "moderator": "مشرف"
+  },
+
+  "states": {
+    "loading": "جاري تحميل المحادثات...",
+    "errorTitle": "حدث خطأ أثناء تحميل المحادثات"
+  },
+
+  "empty": {
+    "leftTitle": "لا توجد محادثات",
+    "leftDesc": "ابدأ الدردشة مع السائقين",
+    "rightTitle": "اختر محادثة",
+    "rightDesc": "اختر جهة اتصال من القائمة الجانبية لبدء المحادثة"
+  },
+
+  "common": {
+    "unknownUser": "مستخدم غير معروف"
+  }
+}

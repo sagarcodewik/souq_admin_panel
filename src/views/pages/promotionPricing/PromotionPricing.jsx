@@ -19,15 +19,26 @@ import {
 import DataTable from '../../../components/datatable/datatable'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { useTranslation } from 'react-i18next'
 
 // ✅ Yup schema
-const promotionSchema = Yup.object().shape({
-  price: Yup.number()
-    .typeError('Price must be a number')
-    .required('Price is required')
-    .min(0, 'Price cannot be negative'),
-  pricingType: Yup.string().nullable(),
-})
+// const promotionSchema = Yup.object().shape({
+//   price: Yup.number()
+//     .typeError('Price must be a number')
+//     .required('Price is required')
+//     .min(0, 'Price cannot be negative'),
+//   pricingType: Yup.string().nullable(),
+// })
+const promotionSchema = (t) =>
+  Yup.object().shape({
+    price: Yup.number()
+      .typeError(t('validation.price_number'))
+      .required(t('validation.price_required'))
+      .min(0, t('validation.price_min')),
+
+    pricingType: Yup.string().nullable(),
+  })
+
 
 const formatPricingType = (value) => {
   if (!value) return '-'
@@ -38,6 +49,8 @@ const formatPricingType = (value) => {
 }
 
 const PromotionPricing = () => {
+    const { t } = useTranslation('promotionPricing')
+
   const dispatch = useDispatch()
   const { promotionPricing, status } = useSelector((state) => state.promotionPricing)
 
@@ -74,42 +87,71 @@ const PromotionPricing = () => {
       .join(' ')
   }
 
+  // const headers = [
+  //   {
+  //     key: 'type',
+  //     label: 'Promotion Type',
+  //     sortable: true,
+  //     render: (row) => formatPromotionType(row.type),
+  //   },
+  //   { key: 'price', label: 'Price (SYP)', sortable: true },
+  //   {
+  //     key: 'pricingType',
+  //     label: 'Pricing Type',
+  //     sortable: true,
+  //     render: (row) => formatPricingType(row.pricingType),
+  //   },
+  //   {
+  //     key: 'actions',
+  //     label: 'Actions',
+  //     render: (row) => (
+  //       <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
+  //         <CIcon icon={cilPencil} /> Edit
+  //       </CButton>
+  //     ),
+  //   },
+  // ]
   const headers = [
-    {
-      key: 'type',
-      label: 'Promotion Type',
-      sortable: true,
-      render: (row) => formatPromotionType(row.type),
-    },
-    { key: 'price', label: 'Price (SYP)', sortable: true },
-    {
-      key: 'pricingType',
-      label: 'Pricing Type',
-      sortable: true,
-      render: (row) => formatPricingType(row.pricingType),
-    },
-    {
-      key: 'actions',
-      label: 'Actions',
-      render: (row) => (
-        <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
-          <CIcon icon={cilPencil} /> Edit
-        </CButton>
-      ),
-    },
-  ]
+  {
+    key: 'type',
+    label: t('table.promotionType'),
+    sortable: true,
+    render: (row) => formatPromotionType(row.type, t),
+  },
+  {
+    key: 'price',
+    label: t('table.price'),
+    sortable: true,
+  },
+  {
+    key: 'pricingType',
+    label: t('table.pricingType'),
+    sortable: true,
+    render: (row) => formatPricingType(row.pricingType, t),
+  },
+  {
+    key: 'actions',
+    label: t('table.actions'),
+    render: (row) => (
+      <CButton size="sm" color="info" onClick={() => handleEdit(row)}>
+        <CIcon icon={cilPencil} /> {t('buttons.edit')}
+      </CButton>
+    ),
+  },
+]
+
 
   const filteredData = promotionPricing.filter((p) =>
     (p?.type ?? '').toLowerCase().includes(searchText.toLowerCase()),
   )
 
-  const noPricingTypePromotions = ['flash-sale'] // example: flash-sale might not use pricingType
+  const noPricingTypePromotions = ['flash-sale']
 
   return (
     <div>
       <CCard className="mb-4">
         <CCardHeader className="d-flex justify-content-between align-items-center flex-wrap gap-2">
-          <h5 className="mb-0">Promotion Pricing</h5>
+          <h5 className="mb-0">{t('title')}</h5>
           <div className="input-group" style={{ width: '300px' }}>
             <span className="input-group-text bg-white">
               <CIcon icon={cilSearch} />
@@ -117,7 +159,7 @@ const PromotionPricing = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search promotion..."
+              placeholder={t('search')}
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
@@ -139,7 +181,7 @@ const PromotionPricing = () => {
 
       {/* Update Modal */}
       <CModal visible={visibleModal} onClose={() => setVisibleModal(false)}>
-        <CModalHeader closeButton>Update Promotion Pricing</CModalHeader>
+        <CModalHeader closeButton> {t('modal.title')}</CModalHeader>
         {editItem && (
           <Formik
             initialValues={{
@@ -154,12 +196,12 @@ const PromotionPricing = () => {
               <Form>
                 <CModalBody>
                   <div className="mb-3">
-                    <label className="form-label">Promotion Type</label>
+                    <label className="form-label">{t('form.promotionType')}</label>
                     <input type="text" value={editItem.type} className="form-control" disabled />
                   </div>
 
                   <div className="mb-3">
-                    <label className="form-label">Price</label>
+                    <label className="form-label">{t('form.price')}</label>
                     <Field
                       name="price"
                       type="number"
@@ -173,18 +215,24 @@ const PromotionPricing = () => {
                   {/* PricingType: shown only if allowed */}
                   {!noPricingTypePromotions.includes(editItem.type) && (
                     <div className="mb-3">
-                      <label className="form-label">Pricing Type</label>
+                      <label className="form-label">{t('form.pricingType')}</label>
                       <Field as="select" name="pricingType" className="form-select">
-                        <option value="">Select Pricing Type</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
-                        <option value="one-time">One Time</option>
-                        <option value="lifetime">Lifetime</option>
-                        <option value="per-use">Per Use</option>
-                        <option value="daily">Daily</option>
-                        <option value="hourly">Hourly</option>
-                        <option value="free">Free</option>
+                        <option value="">{t('form.selectPricingType')}</option>
+                        {[
+                          'weekly',
+                          'monthly',
+                          'yearly',
+                          'one-time',
+                          'lifetime',
+                          'per-use',
+                          'daily',
+                          'hourly',
+                          'free',
+                        ].map((type) => (
+                          <option key={type} value={type}>
+                            {t(`pricingType.${type}`)}
+                          </option>
+                        ))}
                       </Field>
                       <ErrorMessage
                         name="pricingType"
@@ -197,10 +245,10 @@ const PromotionPricing = () => {
 
                 <CModalFooter>
                   <CButton color="secondary" onClick={() => setVisibleModal(false)}>
-                    Cancel
+                   {t('buttons.cancel')}
                   </CButton>
                   <CButton type="submit" color="primary" disabled={isSubmitting}>
-                    {isSubmitting ? 'Updating...' : 'Update'}
+                   {isSubmitting ? t('buttons.updating') : t('buttons.update')}
                   </CButton>
                 </CModalFooter>
               </Form>

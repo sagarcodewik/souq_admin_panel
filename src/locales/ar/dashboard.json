@@ -1,0 +1,54 @@
+{
+  "title": "نظرة عامة على لوحة التحكم",
+  "subtitle": "مراقبة أداء منصة التجارة الإلكترونية والمؤشرات الرئيسية",
+
+  "kpi": {
+    "vendor_requests": "طلبات البائعين",
+    "total_vendors": "إجمالي البائعين",
+    "total_customers": "إجمالي العملاء",
+    "driver_requests": "طلبات السائقين",
+    "active_orders": "الطلبات النشطة",
+    "total_stores": "إجمالي المتاجر",
+
+    "new_requests": "طلبات جديدة",
+    "pending_approval": "بانتظار الموافقة",
+    "in_progress": "قيد التنفيذ",
+    "this_month": "هذا الشهر"
+  },
+
+  "sales": {
+    "title": "نظرة عامة على المبيعات",
+    "no_data": "لا توجد بيانات مبيعات",
+    "last_7_days": "آخر 7 أيام",
+    "last_30_days": "آخر 30 يوم",
+    "last_90_days": "آخر 90 يوم"
+  },
+
+  "performance": {
+    "title": "مؤشرات الأداء",
+    "avg_order_value": "متوسط قيمة الطلب",
+    "return_rate": "معدل الإرجاع",
+    "customer_satisfaction": "رضا العملاء"
+  },
+
+  "orders": {
+    "recent": "الطلبات الأخيرة",
+    "view_all": "عرض الكل",
+    "order_id": "رقم الطلب",
+    "customer": "العميل",
+    "amount": "المبلغ (ل.س)",
+    "status": "الحالة",
+    "date": "التاريخ"
+  },
+
+  "charts": {
+    "sales_by_category": "المبيعات حسب الفئة",
+    "distribution": "التوزيع"
+  },
+
+  "top": {
+    "vendors": "أفضل البائعين",
+    "customers": "أفضل العملاء",
+    "orders": "طلبات"
+  }
+}

@@ -29,8 +29,11 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLayers } from '@coreui/icons'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const EcommerceDashboard = () => {
+  const { t } = useTranslation('dashboard')
+
   const dispatch = useDispatch()
   const [selectedRange, setSelectedRange] = useState(30)
   const navigate = useNavigate()
@@ -155,14 +158,12 @@ const EcommerceDashboard = () => {
     <div className={`container-fluid ${styles.container}`}>
       {/* Page Header */}
       <div className={styles.mb3}>
-        <h1 className={` ${styles.pageHeader}`}>Dashboard Overview</h1>
-        <p className={styles.textMuted}>
-          Monitor your ecommerce platform performance and key metrics
-        </p>
+        <h1 className={` ${styles.pageHeader}`}>{t('title')}</h1>
+        <p className={styles.textMuted}>{t('subtitle')}</p>
       </div>
       <div className={`row g-4 ${styles.mb5}`}>
         <div className="col-xl-3 col-lg-6 col-md-6">
-          <KPICard
+          {/* <KPICard
             title="Vendor Requests"
             value={data.vendorReqCount}
             icon={UserPlus}
@@ -171,11 +172,30 @@ const EcommerceDashboard = () => {
             gradientClass="gradientInfo"
             delay={400}
             to="/vendors/requests"
+          /> */}
+          <KPICard
+            title={t('kpi.vendor_requests')}
+            value={data.vendorReqCount}
+            icon={UserPlus}
+            change={t('kpi.new_requests')}
+            changeType="neutral"
+            gradientClass="gradientInfo"
+            delay={400}
+            to="/vendors/requests"
           />
         </div>
         <div className="col-xl-3 col-lg-6 col-md-6">
-          <KPICard
+          {/* <KPICard
             title="Total Vendors"
+            value={data.totalApprovedVendors}
+            icon={UserPlus}
+            changeType="neutral"
+            gradientClass="gradientInfo"
+            delay={400}
+            to="/vendors/manage"
+          /> */}
+          <KPICard
+            title={t('kpi.total_vendors')}
             value={data.totalApprovedVendors}
             icon={UserPlus}
             changeType="neutral"
@@ -185,7 +205,7 @@ const EcommerceDashboard = () => {
           />
         </div>
         <div className="col-xl-3 col-lg-6 col-md-6">
-          <KPICard
+          {/* <KPICard
             title="Total Customers"
             value={data.totalCustomers || 0}
             icon={UserPlus}
@@ -193,10 +213,18 @@ const EcommerceDashboard = () => {
             gradientClass="gradientInfo"
             delay={400}
             // to="/vendors/manage"
+          /> */}
+          <KPICard
+            title={t('kpi.total_customers')}
+            value={data.totalCustomers || 0}
+            icon={UserPlus}
+            changeType="neutral"
+            gradientClass="gradientInfo"
+            delay={400}
           />
         </div>
         <div className="col-xl-3 col-lg-6 col-md-6">
-          <KPICard
+          {/* <KPICard
             title="Driver Requests"
             value={data.driverReqCount}
             icon={UserCheck}
@@ -205,10 +233,20 @@ const EcommerceDashboard = () => {
             gradientClass="gradientTeal"
             delay={500}
             to="/drivers/requests"
+          /> */}
+          <KPICard
+            title={t('kpi.driver_requests')}
+            value={data.driverReqCount}
+            icon={UserCheck}
+            change={t('kpi.pending_approval')}
+            changeType="neutral"
+            gradientClass="gradientTeal"
+            delay={500}
+            to="/drivers/requests"
           />
         </div>
         <div className="col-xl-3 col-lg-6 col-md-6">
-          <KPICard
+          {/* <KPICard
             title="Active Orders"
             value={data.activeOrderCount}
             icon={Activity}
@@ -217,14 +255,34 @@ const EcommerceDashboard = () => {
             gradientClass="gradientPrimary"
             delay={600}
             to="/orders"
+          /> */}
+          <KPICard
+            title={t('kpi.active_orders')}
+            value={data.activeOrderCount}
+            icon={Activity}
+            change={t('kpi.in_progress')}
+            changeType="positive"
+            gradientClass="gradientPrimary"
+            delay={600}
+            to="/orders"
           />
         </div>
         <div className="col-xl-3 col-lg-6 col-md-6">
-          <KPICard
+          {/* <KPICard
             title="Total Stores"
             value={data.totalApprovedVendors}
             icon={Store}
             change={`${data.approvedDiff} this month`}
+            changeType="positive"
+            gradientClass="gradientPink"
+            delay={700}
+            to="/stores"
+          /> */}
+          <KPICard
+            title={t('kpi.total_stores')}
+            value={data.totalApprovedVendors}
+            icon={Store}
+            change={`${data.approvedDiff} ${t('kpi.this_month')}`}
             changeType="positive"
             gradientClass="gradientPink"
             delay={700}
@@ -240,15 +298,18 @@ const EcommerceDashboard = () => {
             <div
               className={`card-header bg-transparent border-0 d-flex justify-content-between align-items-center py-3 ${styles.cardHeader}`}
             >
-              <h5 className="card-title mb-0 fw-bold">Sales Overview</h5>
+              <h5 className="card-title mb-0 fw-bold">{t('sales.title')}</h5>
               <select
                 className="form-select w-auto"
                 value={selectedRange}
                 onChange={(e) => setSelectedRange(Number(e.target.value))}
               >
-                <option value={7}>Last 7 days</option>
+                {/* <option value={7}>Last 7 days</option>
                 <option value={30}>Last 30 days</option>
-                <option value={90}>Last 90 days</option>
+                <option value={90}>Last 90 days</option> */}
+                <option value={7}>{t('sales.last_7_days')}</option>
+                <option value={30}>{t('sales.last_30_days')}</option>
+                <option value={90}>{t('sales.last_90_days')}</option>
               </select>
             </div>
             <div className="card-body">
@@ -301,7 +362,7 @@ const EcommerceDashboard = () => {
         <div className="col-lg-4">
           <div className="card h-100">
             <div className={`card-header bg-transparent border-0 py-3 ${styles.cardHeader}`}>
-              <h5 className="card-title mb-0 fw-bold">Performance Metrics</h5>
+              <h5 className="card-title mb-0 fw-bold">{t('performance.title')}</h5>
             </div>
             <div className="card-body">
               <div className={styles.mb4}>
@@ -340,13 +401,13 @@ const EcommerceDashboard = () => {
             <div
               className={`card-header bg-transparent border-0 d-flex justify-content-between align-items-center py-3 ${styles.cardHeader}`}
             >
-              <h5 className="card-title mb-0 fw-bold">Recent Orders</h5>
+              <h5 className="card-title mb-0 fw-bold">{t('orders.recent')}</h5>
               <button
                 onClick={() => navigate('/orders')}
                 className={`btn btn-outline-primary btn-sm d-flex align-items-center gap-2 ${styles.btnOutlinePrimary}`}
               >
                 <Eye size={16} />
-                View All
+                {t('orders.view_all')}
               </button>
             </div>
             <div className="card-body p-0">
@@ -355,19 +416,19 @@ const EcommerceDashboard = () => {
                   <thead>
                     <tr>
                       <th className="border-0 px-4 py-3 text-muted fw-semibold text-uppercase small">
-                        Order ID
+                        {t('orders.order_id')}
                       </th>
                       <th className="border-0 px-4 py-3 text-muted fw-semibold text-uppercase small">
-                        Customer
+                        {t('orders.customer')}
                       </th>
                       <th className="border-0 px-4 py-3 text-muted fw-semibold text-uppercase small">
-                        Amount(SYP)
+                        {t('orders.amount')}
                       </th>
                       <th className="border-0 px-4 py-3 text-muted fw-semibold text-uppercase small">
-                        Status
+                        {t('orders.status')}
                       </th>
                       <th className="border-0 px-4 py-3 text-muted fw-semibold text-uppercase small">
-                        Date
+                        {t('orders.date')}
                       </th>
                     </tr>
                   </thead>
@@ -398,8 +459,8 @@ const EcommerceDashboard = () => {
             <div className="card-body p-4">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                  <h5 className="card-title mb-1">Sales by Category</h5>
-                  <p className="text-muted small mb-0">Distribution</p>
+                  <h5 className="card-title mb-1"> {t('charts.sales_by_category')}</h5>
+                  <p className="text-muted small mb-0"> {t('charts.distribution')}</p>
                 </div>
                 <CIcon
                   icon={cilLayers}
@@ -449,7 +510,7 @@ const EcommerceDashboard = () => {
         <div className="col-12">
           <div className="card">
             <div className={`card-header bg-transparent border-0 py-3 ${styles.cardHeader}`}>
-              <h5 className="card-title mb-0 fw-bold">Top Vendors</h5>
+              <h5 className="card-title mb-0 fw-bold"> {t('top.vendors')}</h5>
             </div>
             <div className="card-body">
               <div className="row g-4">
@@ -493,7 +554,7 @@ const EcommerceDashboard = () => {
         <div className="col-12">
           <div className="card">
             <div className={`card-header bg-transparent border-0 py-3 ${styles.cardHeader}`}>
-              <h5 className="card-title mb-0 fw-bold">Top Customers</h5>
+              <h5 className="card-title mb-0 fw-bold">{t('top.customers')}</h5>
             </div>
             <div className="card-body">
               <div className="row g-4">

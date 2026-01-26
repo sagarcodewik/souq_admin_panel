@@ -33,11 +33,13 @@ import {
   deleteAdvertisement,
 } from '../../../redux/slice/advertisemnet'
 import Loader from '../../../components/loader/Loader'
+import { useTranslation } from 'react-i18next'
 
 const AdminAdvertisements = () => {
+  const { t } = useTranslation('advertisements')
+
   const dispatch = useDispatch()
-  const { data, status, pagination } =
-    useSelector((state) => state.advertisements) || {}
+  const { data, status, pagination } = useSelector((state) => state.advertisements) || {}
   const advertisements = data || []
 
   const [selectedAd, setSelectedAd] = useState(null)
@@ -101,30 +103,29 @@ const AdminAdvertisements = () => {
       await dispatch(deleteAdvertisement(id)).unwrap()
       dispatch(fetchAdvertisements({ status: statusTab, page: currentPage, limit: itemsPerPage }))
     } catch (error) {
-      console.error("Delete failed:", error)
+      console.error('Delete failed:', error)
     }
   }
 
-
   return (
     <div className="container mt-4">
-      <h4 className="mb-4">Manage Advertisements</h4>
+      <h4 className="mb-4">{t('title')}</h4>
 
       {/* Tabs */}
       <CNav variant="tabs" className="mb-4">
         <CNavItem>
           <CNavLink active={statusTab === 'pending'} onClick={() => setStatusTab('pending')}>
-            Pending
+            {t('tabs.pending')}
           </CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink active={statusTab === 'approved'} onClick={() => setStatusTab('approved')}>
-            Approved
+            {t('tabs.approved')}
           </CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink active={statusTab === 'rejected'} onClick={() => setStatusTab('rejected')}>
-            Rejected
+            {t('tabs.rejected')}
           </CNavLink>
         </CNavItem>
       </CNav>
@@ -137,25 +138,36 @@ const AdminAdvertisements = () => {
               <CIcon icon={cilSearch} />
             </CInputGroupText>
             <CFormInput
-              placeholder="Search advertisements..."
+              placeholder={t('filters.search')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </CInputGroup>
         </CCol>
         <CCol md={4}>
-          <CFormSelect value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+          {/* <CFormSelect value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
             <option value="">All Categories</option>
             <option value="real_estate">Real Estate</option>
             <option value="car">Cars</option>
             <option value="used_item">Used Items</option>
+          </CFormSelect> */}
+          <CFormSelect value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+            <option value="">{t('filters.allCategories')}</option>
+            <option value="real_estate">{t('filters.realEstate')}</option>
+            <option value="car">{t('filters.cars')}</option>
+            <option value="used_item">{t('filters.usedItems')}</option>
           </CFormSelect>
         </CCol>
         <CCol md={4}>
-          <CFormSelect value={reportedFilter} onChange={(e) => setReportedFilter(e.target.value)}>
+          {/* <CFormSelect value={reportedFilter} onChange={(e) => setReportedFilter(e.target.value)}>
             <option value="">All Status</option>
             <option value="not_reported">Active</option>
             <option value="reported">Reported</option>
+          </CFormSelect> */}
+          <CFormSelect value={reportedFilter} onChange={(e) => setReportedFilter(e.target.value)}>
+            <option value="">{t('filters.allStatus')}</option>
+            <option value="not_reported">{t('filters.active')}</option>
+            <option value="reported">{t('filters.reported')}</option>
           </CFormSelect>
         </CCol>
       </CRow>
@@ -193,8 +205,13 @@ const AdminAdvertisements = () => {
                   {/* Pending Section */}
                   {ad.status === 'pending' && (
                     <div className="d-flex justify-content-between mt-3">
-                      <CButton size="sm" color="success" className="text-white" onClick={() => handleApprove(ad._id)}>
-                        Approve
+                      <CButton
+                        size="sm"
+                        color="success"
+                        className="text-white"
+                        onClick={() => handleApprove(ad._id)}
+                      >
+                        {t('actions.approve')}
                       </CButton>
                       <CButton
                         size="sm"
@@ -205,7 +222,7 @@ const AdminAdvertisements = () => {
                           setRejectModal(true)
                         }}
                       >
-                        Reject
+                        {t('actions.reject')}
                       </CButton>
                     </div>
                   )}
@@ -219,7 +236,7 @@ const AdminAdvertisements = () => {
                         className="text-white"
                         onClick={() => handleDelete(ad._id)}
                       >
-                        Delete
+                        {t('actions.delete')}
                       </CButton>
                     </div>
                   )}
@@ -228,28 +245,28 @@ const AdminAdvertisements = () => {
             </CCol>
           ))
         ) : (
-          <p>No advertisements found.</p>
+          <p>{t('empty.noAds')}</p>
         )}
       </CRow>
 
       {/* Reject Modal */}
       <CModal visible={rejectModal} onClose={() => setRejectModal(false)}>
         <CModalHeader>
-          <CModalTitle>Reject Advertisement</CModalTitle>
+          <CModalTitle>{t('modal.rejectTitle')}</CModalTitle>
         </CModalHeader>
         <CModalBody>
           <CFormTextarea
             rows={3}
-            placeholder="Enter rejection reason..."
+            placeholder={t('modal.rejectPlaceholder')}
             value={rejectReason}
             onChange={(e) => setRejectReason(e.target.value)}
           />
           <div className="d-flex justify-content-end mt-3">
             <CButton color="secondary" onClick={() => setRejectModal(false)} className="me-2">
-              Cancel
+              {t('actions.cancel')}
             </CButton>
             <CButton color="danger" onClick={handleReject}>
-              Reject
+              {t('actions.reject')}
             </CButton>
           </div>
         </CModalBody>
@@ -258,7 +275,7 @@ const AdminAdvertisements = () => {
       {/* 🔹 Ad Details Modal */}
       <CModal size="md" visible={!!selectedAd} onClose={() => setSelectedAd(null)}>
         <CModalHeader>
-          <CModalTitle>Advertisement Details</CModalTitle>
+          <CModalTitle>{t('modal.detailsTitle')}</CModalTitle>
         </CModalHeader>
         <CModalBody>
           {selectedAd && (
@@ -280,10 +297,11 @@ const AdminAdvertisements = () => {
               <h5 className="mt-3">{selectedAd.title}</h5>
               <p className="text-muted">{selectedAd.price} SYP</p>
               <p>
-                <strong>Category:</strong> {selectedAd.category}
+                <strong>{t('labels.category')}:</strong>{' '}
+                {selectedAd.category || t('labels.notSpecified')}
               </p>
               <p>
-                <strong>Status:</strong>{' '}
+                <strong>{t('labels.status')}:</strong>{' '}
                 <CBadge
                   color={
                     selectedAd.status === 'approved'
@@ -296,36 +314,45 @@ const AdminAdvertisements = () => {
                   {selectedAd.status}
                 </CBadge>
               </p>
+
               <p>
-                <strong>Description:</strong> {selectedAd.description || 'No description provided'}
+                <strong>{t('labels.description')}:</strong>{' '}
+                {selectedAd.description || t('labels.noDescription')}
               </p>
               <p>
-                <strong>Location:</strong> {selectedAd.location || 'Not specified'}
+                <strong>{t('labels.location')}:</strong>{' '}
+                {selectedAd.location || t('labels.notSpecified')}
+              </p>
+            <p>
+            <strong>{t('labels.status')}:</strong>{' '}
+            {selectedAd.status
+              ? t(`statusMap.${selectedAd.status}`)
+              : t('labels.notSpecified')}
+          </p>
+              <p>
+                <strong>{t('labels.email')}:</strong> {selectedAd.email || t('labels.notSpecified')}
+              </p>
+
+              <p>
+                <strong>{t('labels.phone')}:</strong> {selectedAd.phone || t('labels.notSpecified')}
               </p>
               <p>
-                <strong>Status:</strong> {selectedAd.status || 'Not specified'}
+                <strong>{t('labels.contactMethod')}:</strong>{' '}
+                {selectedAd.contactPreferences_preferredMethod || t('labels.notSpecified')}
               </p>
               <p>
-                <strong>Email:</strong> {selectedAd.email || 'Not specified'}
+                <strong>{t('labels.contactTime')}:</strong>{' '}
+                {selectedAd.contactPreferences_preferredTime || t('labels.notSpecified')}
               </p>
               <p>
-                <strong>Phone:</strong> {selectedAd.phone || 'Not specified'}
+                <strong>{t('labels.agent')}:</strong> {selectedAd.agent || t('labels.notSpecified')}
               </p>
               <p>
-                <strong>Contact Preferences:</strong> {selectedAd.contactPreferences_preferredMethod || 'Not specified'}
-              </p>
-              <p>
-                <strong>Contact Preferences Time:</strong> {selectedAd.contactPreferences_preferredTime || 'Not specified'}
-              </p>
-              <p>
-                <strong>Agent:</strong> {selectedAd.agent || 'Not specified'}
-              </p>
-              <p>
-                <strong>Reported:</strong>{' '}
+                <strong>{t('labels.reported')}:</strong>{' '}
                 {selectedAd.reported ? (
-                  <CBadge color="danger">Yes</CBadge>
+                  <CBadge color="danger">{t('labels.yes')}</CBadge>
                 ) : (
-                  <CBadge color="success">No</CBadge>
+                  <CBadge color="success">{t('labels.no')}</CBadge>
                 )}
               </p>
             </>
@@ -368,4 +395,4 @@ const AdminAdvertisements = () => {
   )
 }
 
-export default AdminAdvertisements;
+export default AdminAdvertisements

@@ -1,0 +1,41 @@
+{
+  "title": "تفاصيل الطلبات",
+
+  "search_placeholder": "البحث برقم الطلب أو بريد العميل / البائع أو اسم المنتج",
+
+  "filter": {
+    "all": "الكل",
+    "quick": "15 دقيقة",
+    "marketplace": "السوق"
+  },
+
+  "labels": {
+    "customer": "العميل",
+    "vendor": "البائع",
+    "delivery_route": "مسار التوصيل",
+    "pickup": "موقع الاستلام",
+    "delivery_address": "عنوان التسليم",
+    "from": "من",
+    "to": "إلى",
+    "order_details": "تفاصيل الطلب",
+    "more_items": "منتجات إضافية",
+    "subtotal": "المجموع الفرعي",
+    "shipping_fee": "رسوم التوصيل",
+    "grand_total": "المجموع الكلي",
+    "currency": "ل.س"
+  },
+
+  "status": {
+    "pending": "قيد الانتظار",
+    "confirmed": "تم التأكيد",
+    "cancelled": "ملغي",
+    "driver-accepted": "قبله السائق",
+    "returned": "مرتجع",
+    "ready": "جاهز",
+    "shipped": "تم الشحن",
+    "in-transit": "قيد التوصيل",
+    "delivered": "تم التسليم"
+  },
+
+  "empty": "لا توجد طلبات."
+}

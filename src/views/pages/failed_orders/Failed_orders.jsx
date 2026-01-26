@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next'
 
 const FailedOrders = () => {
   const dispatch = useDispatch()
-  const { t, i18n } = useTranslation('failedOrders')
+  const { t} = useTranslation('failedOrders')
 
   /* ───────────── local UI state ───────────── */
   const [searchQuery, setSearchQuery] = useState('')

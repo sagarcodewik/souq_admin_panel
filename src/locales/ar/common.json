@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "vendors": "البائعون",
+    "manage_vendors": "إدارة البائعين",
+    "vendor_requests": "طلبات البائعين",
+    "drivers": "السائقون",
+    "manage_drivers": "إدارة السائقين",
+    "driver_requests": "طلبات السائقين",
+    "active_orders": "الطلبات النشطة",
+    "failed_orders": "الطلبات الفاشلة",
+    "stores": "المتاجر",
+    "category": "الفئات",
+    "advertisements": "الإعلانات",
+    "promotions": "العروض الترويجية",
+    "reviews": "المراجعات",
+    "chats": "المحادثات",
+    "customer_chats": "محادثات العملاء",
+    "driver_chats": "محادثات السائقين",
+    "vendor_chats": "محادثات البائعين",
+    "driver_commission": "عمولة السائق",
+    "add_on_pricing": "تسعير الإضافات",
+    "promotion_pricing": "تسعير العروض",
+    "finances": "المالية",
+    "driver_payments": "مدفوعات السائقين",
+    "logout": "تسجيل الخروج",
+    "switch_to_arabic": "التبديل إلى العربية",
+    "switch_to_english": "التبديل إلى الإنجليزية",
+    "footer_rights": "سوق تطبيقات ثنائي. جميع الحقوق محفوظة."
+  },
+  "table": {
+    "no_data": "لا توجد بيانات",
+    "actions": "الإجراءات"
+  }
+}

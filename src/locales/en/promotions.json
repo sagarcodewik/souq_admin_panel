@@ -1,0 +1,50 @@
+{
+  "title": "Promotions",
+
+  "search": {
+    "title": "Search by Title...",
+    "type": "Search by Type...",
+    "code": "Search by promotion code...",
+    "status": "Status",
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+
+  "table": {
+    "title": "Title",
+    "description": "Description",
+    "type": "Type",
+    "promotion_code": "Promotion Code",
+    "discount": "Discount",
+    "products": "Products",
+    "start_date": "Start Date",
+    "end_date": "End Date",
+    "active": "Active",
+    "deleted": "Deleted",
+    "actions": "Actions",
+     "created":"created"
+  },
+
+  "modal": {
+    "details_title": "Promotion Details",
+    "product_name": "Product Name",
+    "price": "Price (SYP)",
+    "category": "Category",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close"
+  },
+
+  "confirm": {
+    "delete_title": "Delete Promotion",
+    "restore_title": "Restore Promotion",
+    "activate_title": "Activate Promotion",
+    "deactivate_title": "Deactivate Promotion",
+    "delete_msg": "Are you sure you want to delete this promotion?",
+    "restore_msg": "Are you sure you want to restore this promotion?",
+    "activate_msg": "Are you sure you want to activate this promotion?",
+    "deactivate_msg": "Are you sure you want to deactivate this promotion?",
+    "confirm": "Yes, Confirm"
+  }
+}

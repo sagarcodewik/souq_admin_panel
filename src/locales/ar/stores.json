@@ -10,6 +10,10 @@
     "phone": "رقم الهاتف",
     "registered_on": "تاريخ التسجيل"
   },
-
+  "actions": {
+    "view_vendor": "عرض تفاصيل البائع",
+    "activate_vendor": "تفعيل البائع",
+    "deactivate_vendor": "إيقاف البائع"
+  },
   "empty": "لا يوجد بائعون."
 }

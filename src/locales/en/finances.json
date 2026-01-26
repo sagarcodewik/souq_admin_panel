@@ -1,0 +1,18 @@
+{
+  "title": "Admin Financial Breakdown",
+  "search": "Search vendor email and order number",
+  "downloadPdf": "Download PDF",
+  "noData": "No data available to download.",
+  "pdf": {
+    "title": "Admin Financial Breakdown"
+  },
+  "table": {
+    "orderNumber": "Order Number",
+    "vendorEmail": "Vendor Email",
+    "grandTotal": "Grand Total (SYP)",
+    "driverEarnings": "Driver Earnings (SYP)",
+    "adminCommission": "Admin Commission (SYP)",
+    "vendorEarnings": "Vendor Earnings (SYP)",
+    "date": "Date"
+  }
+}

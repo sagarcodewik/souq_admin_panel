@@ -1,0 +1,75 @@
+{
+  "title": "Manage Advertisements",
+
+  "tabs": {
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+
+  "filters": {
+    "search": "Search advertisements...",
+    "allCategories": "All Categories",
+    "realEstate": "Real Estate",
+    "cars": "Cars",
+    "usedItems": "Used Items",
+    "allStatus": "All Status",
+    "active": "Active",
+    "reported": "Reported"
+  },
+
+  "empty": {
+    "noAds": "No advertisements found."
+  },
+
+  "actions": {
+    "approve": "Approve",
+    "reject": "Reject",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "modal": {
+    "rejectTitle": "Reject Advertisement",
+    "rejectPlaceholder": "Enter rejection reason...",
+    "detailsTitle": "Advertisement Details"
+  },
+
+  "labels": {
+    "price": "Price",
+    "category": "Category",
+    "status": "Status",
+    "description": "Description",
+    "location": "Location",
+    "email": "Email",
+    "phone": "Phone",
+    "agent": "Agent",
+    "reported": "Reported",
+    "yes": "Yes",
+    "no": "No",
+    "notSpecified": "Not specified",
+    "noDescription": "No description provided"
+  },
+  "labels": {
+  "price": "Price",
+  "category": "Category",
+  "status": "Status",
+  "description": "Description",
+  "location": "Location",
+  "email": "Email",
+  "phone": "Phone",
+  "agent": "Agent",
+  "reported": "Reported",
+  "yes": "Yes",
+  "no": "No",
+  "notSpecified": "Not specified",
+  "noDescription": "No description provided",
+  "contactMethod": "Contact Preference",
+  "contactTime": "Preferred Time"
+},
+"statusMap": {
+  "pending": "Pending",
+  "approved": "Approved",
+  "rejected": "Rejected"
+}
+}
